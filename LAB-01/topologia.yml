@@ -1,18 +1,88 @@
-name: lab-mixto-cisco-huawei
+name: lab-frr
 
 topology:
   nodes:
-    r1:
+    router1:
+      kind: linux
+      image: frr:10.7.1-ssh # Versión estable de FRR en contenedor
+      sysctls:
+        net.ipv6.conf.all.forwarding: 1
+        net.ipv6.conf.default.forwarding: 1
+      binds:
+        - ./config/R1.cfg:/etc/frr/frr.conf
+
+    switch1:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.1
-    r2:
-      kind: huawei_vrp
-      image: vrnetlab/huawei_vrp:ne40e-V800R011C00SPC607B607
-    r3:
-      kind: cisco_csr1000v
-      image: vrnetlab/cisco_csr1000v:17.03.06
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+
+    PC1:
+      kind: linux
+      image: alpine:3.23
+      exec:
+        - ip add add 192.168.1.10/24 dev eth1
+        - ip route replace default via 192.168.1.1 dev eth1
+        - ip -6 add add 2001:168:1::10/64 dev eth1
+        - ip -6 route replace default via 2001:168:1::1
+
+    router2:
+      kind: linux
+      image: frr:10.7.1-ssh # Versión estable de FRR en contenedor
+      sysctls:
+        net.ipv6.conf.all.forwarding: 1
+        net.ipv6.conf.default.forwarding: 1
+      binds:
+        - ./config/R2.cfg:/etc/frr/frr.conf
+
+    switch2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+
+    PC2:
+      kind: linux
+      image: alpine:3.23
+      exec:
+        - ip add add 192.168.2.10/24 dev eth1
+        - ip route replace default via 192.168.2.1 dev eth1
+        - ip -6 add add 2001:168:2::10/64 dev eth1
+        - ip -6 route replace default via 2001:168:2::1
+
+    router3:
+      kind: linux
+      image: frr:10.7.1-ssh # Versión estable de FRR en contenedor
+      sysctls:
+        net.ipv6.conf.all.forwarding: 1
+        net.ipv6.conf.default.forwarding: 1
+      binds:
+        - ./config/R3.cfg:/etc/frr/frr.conf
+
+    switch3:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:L2-17.12.1
+      type: l2
+
+    PC3:
+      kind: linux
+      image: alpine:3.23
+      exec:
+        - ip add add 192.168.3.10/24 dev eth1
+        - ip route replace default via 192.168.3.1 dev eth1
+        - ip -6 add add 2001:168:3::10/64 dev eth1
+        - ip -6 route replace default via 2001:168:3::1
 
   links:
-    - endpoints: ["r1:Ethernet0/1", "r2:eth1"]
-    - endpoints: ["r2:eth2", "r3:eth1"]
-    - endpoints: ["r3:eth2", "r1:Ethernet0/2"]
+    # Enlace entre Router 1 y Router 2
+    - endpoints: [ "router1:eth1", "router2:eth1" ]
+    - endpoints: [ "router1:eth3", "switch1:e0/1" ]
+    - endpoints: [ "switch1:e0/2", "PC1:eth1" ]
+
+    # Enlace entre Router 2 y Router 3
+    - endpoints: [ "router2:eth2", "router3:eth1" ]
+    - endpoints: [ "router2:eth3", "switch2:e0/1" ]
+    - endpoints: [ "switch2:e0/2", "PC2:eth1" ]
+
+    # Enlace entre Router 3 y Router 1
+    - endpoints: [ "router3:eth2", "router1:eth2" ]
+    - endpoints: [ "router3:eth3", "switch3:e0/1" ]
+    - endpoints: [ "switch3:e0/2", "PC3:eth1" ]
