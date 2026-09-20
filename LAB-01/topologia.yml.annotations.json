@@ -208,7 +208,7 @@
       "id": "PC3",
       "position": {
         "x": 880,
-        "y": 400
+        "y": 300
       },
       "icon": "client",
       "iconCornerRadius": 0
@@ -226,7 +226,7 @@
       "id": "PC1",
       "position": {
         "x": 120,
-        "y": 400
+        "y": 320
       },
       "icon": "client",
       "iconCornerRadius": 0
