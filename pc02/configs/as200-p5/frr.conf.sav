@@ -1,0 +1,71 @@
+frr version 10.7.1
+frr defaults traditional
+hostname as200-p5
+log syslog informational
+!
+interface eth1
+ ip address 10.0.0.45/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth2
+ ip address 10.0.0.10/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth3
+ ip address 10.0.0.49/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth4
+ ip address 10.0.0.2/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface lo
+ ip address 172.16.4.5/32
+ ip router isis TLN03
+ ipv6 address fc10:16:4::5/128
+ ipv6 router isis TLN03
+ isis passive
+exit
+!
+router bgp 200
+ bgp router-id 172.16.4.5
+ no bgp default ipv4-unicast
+ neighbor 172.16.3.1 remote-as 200
+ neighbor 172.16.3.1 update-source lo
+ neighbor 172.16.3.2 remote-as 200
+ neighbor 172.16.3.2 update-source lo
+ neighbor fc10:16:3::1 remote-as 200
+ neighbor fc10:16:3::1 update-source lo
+ neighbor fc10:16:3::2 remote-as 200
+ neighbor fc10:16:3::2 update-source lo
+ !
+ address-family ipv4 unicast
+  neighbor 172.16.3.1 activate
+  neighbor 172.16.3.2 activate
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor fc10:16:3::1 activate
+  neighbor fc10:16:3::2 activate
+ exit-address-family
+exit
+!
+router isis TLN03
+ is-type level-2-only
+ net 49.0001.0000.0000.0045.00
+ advertise-passive-only
+ topology ipv6-unicast
+exit
+!

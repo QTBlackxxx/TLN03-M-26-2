@@ -1,0 +1,13 @@
+!
+! Zebra configuration saved from vty
+!   2026/11/08 02:48:36
+!
+frr version 10.7.1
+frr defaults traditional
+!
+hostname as200-site1
+!
+!
+!
+!
+!
