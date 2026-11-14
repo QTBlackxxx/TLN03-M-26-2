@@ -1,0 +1,179 @@
+=== APLICACIÓN ===
+
+[137|mgmtd] sending configuration
+[138|zebra] sending configuration
+[141|ospfd] sending configuration
+[142|ospf6d] sending configuration
+[144|bgpd] sending configuration
+[143|ldpd] sending configuration
+[145|isisd] sending configuration
+[153|staticd] sending configuration
+[138|zebra] done
+Waiting for children to finish applying config...
+[158|watchfrr] sending configuration
+% Configuration applied with notes:
+No changes found to be committed!
+[153|staticd] done
+[137|mgmtd] done
+eth3 already attached to Area 0
+[145|isisd] done
+lo already attached to Area 0
+[143|ldpd] done
+[158|watchfrr] done
+[142|ospf6d] done
+[141|ospfd] done
+[144|bgpd] done
+
+=== WRITE MEMORY ===
+
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+
+=== show running-config ===
+
+Building configuration...
+
+Current configuration:
+!
+frr version 10.7.1
+frr defaults traditional
+hostname as100-borde1
+log syslog informational
+service integrated-vtysh-config
+!
+ip prefix-list PF-PRF-AS100 seq 5 permit 45.10.0.0/29
+ip prefix-list PF-PRF-AS100-IN seq 5 permit 50.20.0.0/29
+!
+route-map PF-AS100-REGEXP-OUT permit 10
+ match as-path AS-PATH-100-OUT
+exit
+!
+route-map PRF-AS100 permit 10
+ match ip address prefix-list PF-PRF-AS100
+exit
+!
+route-map PRF-AS100-IN permit 10
+ match ip address prefix-list PF-PRF-AS100-IN
+exit
+!
+interface eth1
+ ip address 161.0.0.1/30
+exit
+!
+interface eth2
+ ip address 161.0.1.1/30
+exit
+!
+interface eth3
+ ip address 10.0.0.62/30
+ ip ospf network point-to-point
+ ip ospf prefix-suppression
+ ipv6 ospf6 area 0
+ ipv6 ospf6 network point-to-point
+exit
+!
+interface lo
+ ip address 200.1.1.1/32
+ ip ospf passive
+ ipv6 address 2001:1:1::1/128
+ ipv6 ospf6 area 0
+ ipv6 ospf6 network point-to-point
+exit
+!
+router bgp 100
+ bgp router-id 200.1.1.1
+ no bgp default ipv4-unicast
+ neighbor 161.0.0.2 remote-as 200
+ neighbor 172.16.3.1 remote-as 100
+ neighbor 172.16.3.1 update-source lo
+ neighbor 172.16.3.2 remote-as 100
+ neighbor 172.16.3.2 update-source lo
+ neighbor fc10:16:3::1 remote-as 100
+ neighbor fc10:16:3::1 update-source lo
+ neighbor fc10:16:3::2 remote-as 100
+ neighbor fc10:16:3::2 update-source lo
+ !
+ address-family ipv4 unicast
+  neighbor 161.0.0.2 activate
+  neighbor 161.0.0.2 route-map PRF-AS100-IN in
+  neighbor 161.0.0.2 route-map PF-AS100-REGEXP-OUT out
+  neighbor 172.16.3.1 activate
+  neighbor 172.16.3.1 next-hop-self
+  neighbor 172.16.3.2 activate
+  neighbor 172.16.3.2 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor fc10:16:3::1 activate
+  neighbor fc10:16:3::2 activate
+ exit-address-family
+exit
+!
+router ospf
+ network 10.0.0.60/30 area 0
+ network 200.1.1.1/32 area 0
+exit
+!
+router ospf6
+exit
+!
+mpls ldp
+ router-id 200.1.1.1
+ !
+ address-family ipv4
+  discovery transport-address 200.1.1.1
+  !
+  interface eth3
+  exit
+  !
+ exit-address-family
+ !
+exit
+!
+bgp as-path access-list AS-PATH-100-OUT seq 5 permit ^$
+!
+end
+
+=== show ip route ===
+
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, weight 1, 00:02:28
+C>* 10.0.0.60/30 is directly connected, eth3, weight 1, 00:02:18
+L>* 10.0.0.62/32 is directly connected, eth3, weight 1, 00:02:18
+B>  45.10.0.0/29 [200/0] via 172.16.1.2 (recursive), weight 1, 00:01:42
+  *                        via 10.0.0.61, eth3, label 16, weight 1, 00:01:42
+                         via 172.16.1.2 (recursive) (dup), weight 1, 00:01:42
+                           via 10.0.0.61, eth3 (dup), label 16, weight 1, 00:01:42
+B>* 50.20.0.0/29 [20/0] via 161.0.0.2, eth1, weight 1, 00:01:43
+C>* 161.0.0.0/30 is directly connected, eth1, weight 1, 00:02:26
+L>* 161.0.0.1/32 is directly connected, eth1, weight 1, 00:02:26
+C>* 161.0.1.0/30 is directly connected, eth2, weight 1, 00:02:26
+L>* 161.0.1.1/32 is directly connected, eth2, weight 1, 00:02:26
+O>* 172.16.1.1/32 [110/30] via 10.0.0.61, eth3, label 30, weight 1, 00:01:38
+O>* 172.16.1.2/32 [110/40] via 10.0.0.61, eth3, label 16, weight 1, 00:01:59
+O>* 172.16.3.1/32 [110/30] via 10.0.0.61, eth3, label 17, weight 1, 00:01:59
+O>* 172.16.3.2/32 [110/20] via 10.0.0.61, eth3, label 18, weight 1, 00:02:03
+O>* 172.16.4.1/32 [110/30] via 10.0.0.61, eth3, label 19, weight 1, 00:01:59
+O>* 172.16.4.2/32 [110/20] via 10.0.0.61, eth3, label 20, weight 1, 00:01:59
+O>* 172.16.4.3/32 [110/10] via 10.0.0.61, eth3, label implicit-null, weight 1, 00:02:06
+O>* 172.16.4.4/32 [110/20] via 10.0.0.61, eth3, label 32, weight 1, 00:01:43
+O>* 172.16.4.5/32 [110/30] via 10.0.0.61, eth3, label 21, weight 1, 00:01:43
+C>* 172.20.20.0/24 is directly connected, eth0, weight 1, 00:02:28
+L>* 172.20.20.15/32 is directly connected, eth0, weight 1, 00:02:28
+L * 200.1.1.1/32 is directly connected, lo, weight 1, 00:02:26
+C>* 200.1.1.1/32 is directly connected, lo, weight 1, 00:02:26
+O>* 200.1.1.2/32 [110/30] via 10.0.0.61, eth3, label 33, weight 1, 00:01:43
+
+=== show ip ospf neighbor ===
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+172.16.4.3        1 Full/-          2m07s             31.664s 10.0.0.61       eth3:10.0.0.62                       0     0     0

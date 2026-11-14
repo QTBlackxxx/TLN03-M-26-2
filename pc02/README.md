@@ -186,3 +186,26 @@ Escenario base proporcionado por el profesor en QTBlackxxx/TLN03-M-26-2.
 ## Evidencias finales
 
 [Resultados y registros](docs/evidencias/README.md)
+
+## Arranque serializado de FRR
+
+Se observaron trabajos restart all y restart ldpd superpuestos durante el
+arranque. La topología runtime ejecuta el start.sh de la imagen del profesor
+bajo el init incluido en Docker. Un manejador con flock serializa los trabajos
+start/stop/restart de watchfrr por contenedor, conservando el script original
+y su código de salida. No se cambian temporizadores de los protocolos.
+
+prepare_runtime.py obtiene los archivos auxiliares localmente de la imagen
+frr:10.7.1-ssh y de Docker. Requiere bash y flock dentro de esa imagen.
+Las bases y la imagen no se modifican. runtime/ no debe incluirse en Git.
+Los registros START/END están en /run/frr/pc2-lifecycle.log de cada router.
+
+La corrección requiere recrear el laboratorio con escenario02.runtime.yml.
+Después: python pc02/run.py --method netmiko --all y python pc02/validate.py.
+Se exige 30/30; no se reinicia LDP automáticamente para ocultar un fallo.
+La relación causal completa con la desaparición del socket debe confirmarse
+con ensayos de arranque limpio antes de declarar el problema resuelto.
+
+## Pruebas del arranque corregido
+
+[Resultados y evidencias](docs/evidencias/arranque-serial-20261114/README.md)

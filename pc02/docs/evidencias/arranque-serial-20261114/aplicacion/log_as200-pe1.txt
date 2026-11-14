@@ -1,0 +1,213 @@
+=== APLICACIÓN ===
+
+[176|mgmtd] sending configuration
+[177|zebra] sending configuration
+[180|ospfd] sending configuration
+[183|bgpd] sending configuration
+[181|ospf6d] sending configuration
+[177|zebra] done
+[184|isisd] sending configuration
+[182|ldpd] sending configuration
+[192|staticd] sending configuration
+[181|ospf6d] done
+Waiting for children to finish applying config...
+[197|watchfrr] sending configuration
+For this router-id change to take effect, use "clear ip ospf process" command
+[192|staticd] done
+[197|watchfrr] done
+[184|isisd] done
+[180|ospfd] done
+[182|ldpd] done
+[176|mgmtd] done
+[183|bgpd] done
+
+=== WRITE MEMORY ===
+
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+
+=== show running-config ===
+
+Building configuration...
+
+Current configuration:
+!
+frr version 10.7.1
+frr defaults traditional
+hostname as200-pe1
+log syslog informational
+service integrated-vtysh-config
+!
+vrf A
+exit-vrf
+!
+vrf B
+exit-vrf
+!
+interface eth1
+ ip address 10.0.0.53/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth2
+ ip address 10.0.0.50/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth3
+ ip address 10.0.1.1/30
+ ip ospf area 0
+ ip ospf network point-to-point
+exit
+!
+interface eth4
+ ip address 10.0.11.1/30
+ ip ospf area 0
+ ip ospf network point-to-point
+exit
+!
+interface lo
+ ip address 172.16.1.1/32
+ ip router isis TLN03
+ ipv6 address fc10:16:1::1/128
+ ipv6 router isis TLN03
+ isis passive
+exit
+!
+router bgp 200
+ bgp router-id 172.16.1.1
+ no bgp default ipv4-unicast
+ neighbor 172.16.3.1 remote-as 200
+ neighbor 172.16.3.1 update-source lo
+ neighbor 172.16.3.2 remote-as 200
+ neighbor 172.16.3.2 update-source lo
+ neighbor fc10:16:3::1 remote-as 200
+ neighbor fc10:16:3::1 update-source lo
+ neighbor fc10:16:3::2 remote-as 200
+ neighbor fc10:16:3::2 update-source lo
+ !
+ address-family ipv4 unicast
+  neighbor 172.16.3.1 activate
+  neighbor 172.16.3.2 activate
+ exit-address-family
+ !
+ address-family ipv4 vpn
+  neighbor 172.16.3.1 activate
+  neighbor 172.16.3.2 activate
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor fc10:16:3::1 activate
+  neighbor fc10:16:3::2 activate
+ exit-address-family
+exit
+!
+router bgp 200 vrf A
+ bgp router-id 172.16.1.1
+ !
+ address-family ipv4 unicast
+  redistribute ospf
+  label vpn export auto
+  rd vpn export 200:110
+  rt vpn both 200:10
+  export vpn
+  import vpn
+ exit-address-family
+exit
+!
+router bgp 200 vrf B
+ bgp router-id 172.16.1.1
+ !
+ address-family ipv4 unicast
+  redistribute ospf
+  label vpn export auto
+  rd vpn export 200:120
+  rt vpn both 200:20
+  export vpn
+  import vpn
+ exit-address-family
+exit
+!
+router ospf vrf A
+ ospf router-id 10.0.1.1
+ redistribute bgp
+exit
+!
+router ospf vrf B
+ ospf router-id 10.0.11.1
+ redistribute bgp
+exit
+!
+mpls ldp
+ router-id 172.16.1.1
+ !
+ address-family ipv4
+  discovery transport-address 172.16.1.1
+  !
+  interface eth1
+  exit
+  !
+  interface eth2
+  exit
+  !
+ exit-address-family
+ !
+exit
+!
+router isis TLN03
+ is-type level-2-only
+ net 49.0001.0000.0000.0011.00
+ advertise-passive-only
+ topology ipv6-unicast
+exit
+!
+end
+
+=== show ip route ===
+
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, weight 1, 00:02:04
+C>* 10.0.0.48/30 is directly connected, eth2, weight 1, 00:02:02
+L>* 10.0.0.50/32 is directly connected, eth2, weight 1, 00:02:02
+C>* 10.0.0.52/30 is directly connected, eth1, weight 1, 00:02:02
+L>* 10.0.0.53/32 is directly connected, eth1, weight 1, 00:02:02
+B>  45.10.0.0/29 [200/0] via 190.1.1.1 (recursive), weight 1, 00:00:06
+  *                        via 10.0.0.54, eth1, label 20, weight 1, 00:00:06
+                         via 190.1.1.1 (recursive) (dup), weight 1, 00:00:06
+                           via 10.0.0.54, eth1 (dup), label 20, weight 1, 00:00:06
+B>  50.20.0.0/29 [200/0] via 172.16.1.2 (recursive), weight 1, 00:01:24
+  *                        via 10.0.0.49, eth2, label 17, weight 1, 00:01:24
+                         via 172.16.1.2 (recursive) (dup), weight 1, 00:01:24
+                           via 10.0.0.49, eth2 (dup), label 17, weight 1, 00:01:24
+L * 172.16.1.1/32 is directly connected, lo, weight 1, 00:02:02
+C>* 172.16.1.1/32 is directly connected, lo, weight 1, 00:02:02
+I>* 172.16.1.2/32 [115/30] via 10.0.0.49, eth2, label 17, weight 1, 00:01:32
+I>* 172.16.3.1/32 [115/40] via 10.0.0.49, eth2, label 18, weight 1, 00:01:32
+  *                        via 10.0.0.54, eth1, label 29, weight 1, 00:01:32
+I>* 172.16.3.2/32 [115/40] via 10.0.0.54, eth1, label 16, weight 1, 00:01:32
+I>* 172.16.4.1/32 [115/30] via 10.0.0.49, eth2, label 20, weight 1, 00:01:32
+I>* 172.16.4.2/32 [115/30] via 10.0.0.54, eth1, label 17, weight 1, 00:01:32
+I>* 172.16.4.3/32 [115/30] via 10.0.0.54, eth1, label 18, weight 1, 00:01:32
+I>* 172.16.4.4/32 [115/20] via 10.0.0.54, eth1, label implicit-null, weight 1, 00:01:32
+I>* 172.16.4.5/32 [115/20] via 10.0.0.49, eth2, label implicit-null, weight 1, 00:01:32
+C>* 172.20.20.0/24 is directly connected, eth0, weight 1, 00:02:04
+L>* 172.20.20.31/32 is directly connected, eth0, weight 1, 00:02:04
+I>* 190.1.1.1/32 [115/40] via 10.0.0.54, eth1, label 20, weight 1, 00:01:32
+I>* 190.1.1.2/32 [115/30] via 10.0.0.54, eth1, label 21, weight 1, 00:01:32
+
+=== show ip ospf neighbor ===
+
+% OSPF is not enabled in vrf default

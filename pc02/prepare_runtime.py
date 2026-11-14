@@ -4,6 +4,7 @@ import shutil
 from pathlib import Path
 
 import yaml
+from startup_support import prepare_startup
 
 
 def prepare():
@@ -60,6 +61,8 @@ def prepare():
         )
         node["exec"] = [permissions] + node.get("exec", [])
         print(f"PREPARADO: {name}")
+
+    prepare_startup(base, topology)
 
     target = base / "escenario02.runtime.yml"
     target.write_text(

@@ -1,0 +1,11 @@
+{
+  "requirements.txt": "37c6442ad1e6b5713fededacf8bdeea2c5cf486e64894b74f51f9f6d16290a3c",
+  "pc02/escenario02.yml": "0614b86109957dca12fc39b8483e8941930903fadc5ae7d4cf26f7b31ac957bf",
+  "pc02/inventory.yml": "42d25f1b8d08f4b5a390b92307ab086134a3fb8ea6083a7b21c72a1d7e0a3478",
+  "pc02/build_configs.py": "5c2621ef1687391dd11bc134b3ff7ad6ebb5baa8073245a39d6e1b892aa0bcaf",
+  "pc02/prepare_runtime.py": "19ee98de5ea81801bb71c02ec2a69039482c029c99298593618aa4ec25260644",
+  "pc02/startup_support.py": "97bba2c8445f4ad844ce0f2457830dd06cfc280399344a06ddac4a6bd1e9d874",
+  "pc02/run.py": "e94f7b18574e059a0e02f828ff89bfd607dfdc2cd5525883f8f7e618fbaea219",
+  "pc02/validate.py": "dfcdb3ac8b6b054ef51050ee7dea3fb34621f26197490a50bf1f6dfcfb1cf885",
+  "pc02/test_failover.py": "fbc7ee62a12252388998dbcd773db1ce46752bfd6c631a26a92c411ada770bd6"
+}

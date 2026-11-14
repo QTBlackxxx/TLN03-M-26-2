@@ -1,0 +1,32 @@
+OK: as100-rr1
+OK: as100-rr2
+OK: as100-p1
+OK: as100-p2
+OK: as100-p3
+OK: as100-p4
+OK: as100-p5
+OK: as100-pe1
+OK: as100-site1
+OK: as100-site-1
+OK: as100-pe2
+OK: as100-site2
+OK: as100-site-2
+OK: as100-borde1
+OK: as100-borde2
+OK: as200-rr1
+OK: as200-rr2
+OK: as200-p1
+OK: as200-p2
+OK: as200-p3
+OK: as200-p4
+OK: as200-p5
+OK: as200-pe1
+OK: as200-site1
+OK: as200-site-1
+OK: as200-pe2
+OK: as200-site2
+OK: as200-site-2
+OK: as200-borde1
+OK: as200-borde2
+
+Nodos validados: 30/30
