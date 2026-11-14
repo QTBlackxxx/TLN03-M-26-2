@@ -213,3 +213,28 @@ con ensayos de arranque limpio antes de declarar el problema resuelto.
 ## Reproducción desde GitHub
 
 [Prueba desde un clon nuevo: 30/30](docs/evidencias/reproducibilidad-clon-20261114/README.md)
+
+## Ejecución en tres etapas
+
+Desde la raíz del repositorio, ejecutar por separado:
+
+~~~bash
+bash pc02/desplegar.sh
+~~~
+
+~~~bash
+bash pc02/configurar.sh
+~~~
+
+~~~bash
+bash pc02/validar.sh
+~~~
+
+desplegar.sh prepara el entorno y despliega. Si el laboratorio ya
+pertenece a esta carpeta, lo recrea conservando runtime y registros;
+esto interrumpe temporalmente el tráfico.
+
+configurar.sh aplica y guarda por SSH, y espera 60 segundos de convergencia.
+validar.sh ejecuta únicamente la validación operativa.
+
+Se requieren Docker, Containerlab, sudo y la imagen del curso disponibles.
