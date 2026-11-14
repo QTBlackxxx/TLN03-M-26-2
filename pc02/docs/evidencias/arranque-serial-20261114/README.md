@@ -11,4 +11,5 @@ Se observaron pérdidas transitorias durante algunas convergencias.
 Los casos de router aislaron interfaces de datos; no apagaron el contenedor.
 Estos resultados corresponden a los ocho casos ejecutados.
 
-La prueba desde un clon nuevo queda pendiente.
+La prueba desde un clon nuevo fue superada: aplicación y validación 30/30.
+Véase ../reproducibilidad-clon-20261114/README.md.

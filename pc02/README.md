@@ -209,3 +209,7 @@ con ensayos de arranque limpio antes de declarar el problema resuelto.
 ## Pruebas del arranque corregido
 
 [Resultados y evidencias](docs/evidencias/arranque-serial-20261114/README.md)
+
+## Reproducción desde GitHub
+
+[Prueba desde un clon nuevo: 30/30](docs/evidencias/reproducibilidad-clon-20261114/README.md)

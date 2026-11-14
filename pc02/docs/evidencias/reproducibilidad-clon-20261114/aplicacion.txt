@@ -1,0 +1,64 @@
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-rr1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-rr2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-p1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-p2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-p3.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-p4.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-p5.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-pe1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-site1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-site-1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-pe2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-site2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-site-2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-borde1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as100-borde2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-rr1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-rr2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-p1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-p2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-p3.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-p4.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-p5.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-pe1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-site1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-site-1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-pe2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-site2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-site-2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-borde1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/clon-profesor-lLfAGPsn/pc02/generated/as200-borde2.conf
+
+OK: 30 configuraciones generadas; routers sin modificar
+OK: as100-p1: aplicado, guardado y consultado
+OK: as100-p2: aplicado, guardado y consultado
+OK: as100-p3: aplicado, guardado y consultado
+OK: as100-p4: aplicado, guardado y consultado
+OK: as100-p5: aplicado, guardado y consultado
+OK: as200-p1: aplicado, guardado y consultado
+OK: as200-p2: aplicado, guardado y consultado
+OK: as200-p3: aplicado, guardado y consultado
+OK: as200-p4: aplicado, guardado y consultado
+OK: as200-p5: aplicado, guardado y consultado
+OK: as100-rr1: aplicado, guardado y consultado
+OK: as100-rr2: aplicado, guardado y consultado
+OK: as200-rr1: aplicado, guardado y consultado
+OK: as200-rr2: aplicado, guardado y consultado
+OK: as100-borde1: aplicado, guardado y consultado
+OK: as100-borde2: aplicado, guardado y consultado
+OK: as200-borde1: aplicado, guardado y consultado
+OK: as200-borde2: aplicado, guardado y consultado
+OK: as100-pe1: aplicado, guardado y consultado
+OK: as100-pe2: aplicado, guardado y consultado
+OK: as200-pe1: aplicado, guardado y consultado
+OK: as200-pe2: aplicado, guardado y consultado
+OK: as100-site-1: aplicado, guardado y consultado
+OK: as100-site-2: aplicado, guardado y consultado
+OK: as100-site1: aplicado, guardado y consultado
+OK: as100-site2: aplicado, guardado y consultado
+OK: as200-site-1: aplicado, guardado y consultado
+OK: as200-site-2: aplicado, guardado y consultado
+OK: as200-site1: aplicado, guardado y consultado
+OK: as200-site2: aplicado, guardado y consultado
+
+Aplicaciones confirmadas: 30/30

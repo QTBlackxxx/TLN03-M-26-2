@@ -1,0 +1,1 @@
+591c882 fix: serializar arranque FRR y documentar ocho fallas superadas
