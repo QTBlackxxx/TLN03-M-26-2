@@ -11,3 +11,4 @@ __pycache__/
 *.pyc
 pc02/generated/
 pc02/logs/
+pc02/escenario02.runtime.yml.annotations.json
