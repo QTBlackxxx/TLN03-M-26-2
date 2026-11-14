@@ -1,2 +1,12 @@
 ignorado.txt
 pc01/setup.py
+
+# Archivos generados por Containerlab
+pc02/clab-sp-core-rr-lab/
+.venv/
+.venv/
+pc02/runtime/
+pc02/escenario02.runtime.yml
+__pycache__/
+*.pyc
+pc02/generated/

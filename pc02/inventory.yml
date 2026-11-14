@@ -1,0 +1,210 @@
+defaults:
+  username: admin
+  password_env: PC2_PASSWORD
+  port: 22
+nodes:
+  as100-rr1:
+    host: clab-sp-core-rr-lab-as100-rr1
+    asn: 100
+    index: 1
+    role: rr
+    base_config: configs/as100-rr1/frr.conf
+  as100-rr2:
+    host: clab-sp-core-rr-lab-as100-rr2
+    asn: 100
+    index: 2
+    role: rr
+    base_config: configs/as100-rr2/frr.conf
+  as100-p1:
+    host: clab-sp-core-rr-lab-as100-p1
+    asn: 100
+    index: 1
+    role: core
+    base_config: configs/as100-p1/frr.conf
+  as100-p2:
+    host: clab-sp-core-rr-lab-as100-p2
+    asn: 100
+    index: 2
+    role: core
+    base_config: configs/as100-p2/frr.conf
+  as100-p3:
+    host: clab-sp-core-rr-lab-as100-p3
+    asn: 100
+    index: 3
+    role: core
+    base_config: configs/as100-p3/frr.conf
+  as100-p4:
+    host: clab-sp-core-rr-lab-as100-p4
+    asn: 100
+    index: 4
+    role: core
+    base_config: configs/as100-p4/frr.conf
+  as100-p5:
+    host: clab-sp-core-rr-lab-as100-p5
+    asn: 100
+    index: 5
+    role: core
+    base_config: configs/as100-p5/frr.conf
+  as100-pe1:
+    host: clab-sp-core-rr-lab-as100-pe1
+    asn: 100
+    index: 1
+    role: pe
+    base_config: configs/as100-pe1/frr.conf
+  as100-site1:
+    host: clab-sp-core-rr-lab-as100-site1
+    asn: 100
+    index: 1
+    role: site
+    customer: A
+  as100-site-1:
+    host: clab-sp-core-rr-lab-as100-site-1
+    asn: 100
+    index: 1
+    role: site
+    customer: B
+  as100-pe2:
+    host: clab-sp-core-rr-lab-as100-pe2
+    asn: 100
+    index: 2
+    role: pe
+    base_config: configs/as100-pe2/frr.conf
+    test_address: 45.10.0.1/32
+  as100-site2:
+    host: clab-sp-core-rr-lab-as100-site2
+    asn: 100
+    index: 2
+    role: site
+    customer: A
+  as100-site-2:
+    host: clab-sp-core-rr-lab-as100-site-2
+    asn: 100
+    index: 2
+    role: site
+    customer: B
+  as100-borde1:
+    host: clab-sp-core-rr-lab-as100-borde1
+    asn: 100
+    index: 1
+    role: border
+    base_config: configs/as100-borde1/frr.conf
+  as100-borde2:
+    host: clab-sp-core-rr-lab-as100-borde2
+    asn: 100
+    index: 2
+    role: border
+    base_config: configs/as100-borde2/frr.conf
+  as200-rr1:
+    host: clab-sp-core-rr-lab-as200-rr1
+    asn: 200
+    index: 1
+    role: rr
+    base_config: configs/as200-rr1/frr.conf
+  as200-rr2:
+    host: clab-sp-core-rr-lab-as200-rr2
+    asn: 200
+    index: 2
+    role: rr
+    base_config: configs/as200-rr2/frr.conf
+  as200-p1:
+    host: clab-sp-core-rr-lab-as200-p1
+    asn: 200
+    index: 1
+    role: core
+    base_config: configs/as200-p1/frr.conf
+  as200-p2:
+    host: clab-sp-core-rr-lab-as200-p2
+    asn: 200
+    index: 2
+    role: core
+    base_config: configs/as200-p2/frr.conf
+  as200-p3:
+    host: clab-sp-core-rr-lab-as200-p3
+    asn: 200
+    index: 3
+    role: core
+    base_config: configs/as200-p3/frr.conf
+  as200-p4:
+    host: clab-sp-core-rr-lab-as200-p4
+    asn: 200
+    index: 4
+    role: core
+    base_config: configs/as200-p4/frr.conf
+  as200-p5:
+    host: clab-sp-core-rr-lab-as200-p5
+    asn: 200
+    index: 5
+    role: core
+    base_config: configs/as200-p5/frr.conf
+  as200-pe1:
+    host: clab-sp-core-rr-lab-as200-pe1
+    asn: 200
+    index: 1
+    role: pe
+    base_config: configs/as200-pe1/frr.conf
+  as200-site1:
+    host: clab-sp-core-rr-lab-as200-site1
+    asn: 200
+    index: 1
+    role: site
+    customer: A
+  as200-site-1:
+    host: clab-sp-core-rr-lab-as200-site-1
+    asn: 200
+    index: 1
+    role: site
+    customer: B
+  as200-pe2:
+    host: clab-sp-core-rr-lab-as200-pe2
+    asn: 200
+    index: 2
+    role: pe
+    base_config: configs/as200-pe2/frr.conf
+    test_address: 50.20.0.1/32
+  as200-site2:
+    host: clab-sp-core-rr-lab-as200-site2
+    asn: 200
+    index: 2
+    role: site
+    customer: A
+  as200-site-2:
+    host: clab-sp-core-rr-lab-as200-site-2
+    asn: 200
+    index: 2
+    role: site
+    customer: B
+  as200-borde1:
+    host: clab-sp-core-rr-lab-as200-borde1
+    asn: 200
+    index: 1
+    role: border
+    base_config: configs/as200-borde1/frr.conf
+  as200-borde2:
+    host: clab-sp-core-rr-lab-as200-borde2
+    asn: 200
+    index: 2
+    role: border
+    base_config: configs/as200-borde2/frr.conf
+customers:
+  A:
+    table: 10
+    pe_interface: eth3
+    rt_suffix: 10
+    sites:
+      1:
+        transit: 10.0.1.0/30
+        lan: 192.168.1.1/24
+      2:
+        transit: 10.0.2.0/30
+        lan: 192.168.2.1/24
+  B:
+    table: 20
+    pe_interface: eth4
+    rt_suffix: 20
+    sites:
+      1:
+        transit: 10.0.11.0/30
+        lan: 192.168.11.1/24
+      2:
+        transit: 10.0.12.0/30
+        lan: 192.168.12.1/24
