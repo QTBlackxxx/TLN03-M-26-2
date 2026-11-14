@@ -10,6 +10,7 @@ from pathlib import Path
 
 import yaml
 from netmiko import ConnectHandler
+from build_configs import generate
 
 
 def execute(connection, command):
@@ -122,12 +123,27 @@ def main():
     base = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--method", choices=["netmiko"], default="netmiko")
-    parser.add_argument("--nodes", nargs="+", required=True)
+    selection = parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--nodes", nargs="+")
+    selection.add_argument("--all", action="store_true")
     args = parser.parse_args()
 
     inventory = yaml.safe_load(
         (base / "inventory.yml").read_text(encoding="utf-8")
     )
+    if args.all:
+        order = {"core": 0, "rr": 1, "border": 2, "pe": 3, "site": 4}
+        args.nodes = sorted(
+            inventory["nodes"],
+            key=lambda name: (
+                order[inventory["nodes"][name]["role"]],
+                inventory["nodes"][name]["asn"],
+                name,
+            ),
+        )
+
+    generate(base / "inventory.yml", base / "generated")
+
     for name in args.nodes:
         if name not in inventory["nodes"]:
             parser.error(f"Nodo fuera del inventario: {name}")

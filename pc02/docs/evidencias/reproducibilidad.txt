@@ -1,0 +1,646 @@
+=== 1. COMPROBAR BASES ===
+=== 2. DESTRUIR LABORATORIO ACTUAL ===
+19:55:20 INFO Parsing & checking topology file=escenario02.runtime.yml
+19:55:21 INFO Parsing & checking topology file=escenario02.runtime.yml
+19:55:22 INFO Destroying lab name=sp-core-rr-lab
+19:55:26 INFO Removed container name=clab-sp-core-rr-lab-as100-site2
+19:55:26 INFO Removed container name=clab-sp-core-rr-lab-as200-site1
+19:55:27 INFO Removed container name=clab-sp-core-rr-lab-as100-site1
+19:55:27 INFO Removed container name=clab-sp-core-rr-lab-as100-site-1
+19:55:27 INFO Removed container name=clab-sp-core-rr-lab-as200-site-1
+19:55:27 INFO Removed container name=clab-sp-core-rr-lab-as200-site-2
+19:55:28 INFO Removed container name=clab-sp-core-rr-lab-as100-site-2
+19:55:29 INFO Removed container name=clab-sp-core-rr-lab-as200-site2
+19:55:29 INFO Removed container name=clab-sp-core-rr-lab-as200-pe1
+19:55:29 INFO Removed container name=clab-sp-core-rr-lab-as100-pe2
+19:55:29 INFO Removed container name=clab-sp-core-rr-lab-as200-p5
+19:55:29 INFO Removed container name=clab-sp-core-rr-lab-as200-p1
+19:55:29 INFO Removed container name=clab-sp-core-rr-lab-as100-borde1
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-p5
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-p4
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-p3
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-borde2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-rr2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-p2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-rr2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-p3
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-rr1
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-pe1
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-borde2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-rr1
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-pe2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-p4
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as200-borde1
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-p2
+19:55:30 INFO Removed container name=clab-sp-core-rr-lab-as100-p1
+19:55:30 INFO Removing host entries path=/etc/hosts
+19:55:30 INFO Removing SSH config path=/etc/ssh/ssh_config.d/clab-sp-core-rr-lab.conf
+=== 3. RESPALDAR ESTADO ANTERIOR ===
+Respaldo: /home/wilmer/Respaldos-PC2/reproducibilidad-20261113-195531
+=== 4. PREPARAR COPIAS NUEVAS ===
+PREPARADO: as100-rr1
+PREPARADO: as100-rr2
+PREPARADO: as100-p1
+PREPARADO: as100-p2
+PREPARADO: as100-p3
+PREPARADO: as100-p4
+PREPARADO: as100-p5
+PREPARADO: as100-pe1
+PREPARADO: as100-site1
+PREPARADO: as100-site-1
+PREPARADO: as100-pe2
+PREPARADO: as100-site2
+PREPARADO: as100-site-2
+PREPARADO: as100-borde1
+PREPARADO: as100-borde2
+PREPARADO: as200-rr1
+PREPARADO: as200-rr2
+PREPARADO: as200-p1
+PREPARADO: as200-p2
+PREPARADO: as200-p3
+PREPARADO: as200-p4
+PREPARADO: as200-p5
+PREPARADO: as200-pe1
+PREPARADO: as200-site1
+PREPARADO: as200-site-1
+PREPARADO: as200-pe2
+PREPARADO: as200-site2
+PREPARADO: as200-site-2
+PREPARADO: as200-borde1
+PREPARADO: as200-borde2
+OK: topología de ejecución: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/escenario02.runtime.yml
+19:55:32 INFO Parsing & checking topology file=escenario02.runtime.yml
+19:55:32 INFO Topology is valid name=sp-core-rr-lab nodes=30 links=44
+=== 5. DESPLEGAR ===
+19:55:32 INFO Containerlab started version=0.79.0
+19:55:32 INFO Parsing & checking topology file=escenario02.runtime.yml
+19:55:32 INFO Creating docker network name=clab IPv4 subnet=172.20.20.0/24 IPv6 subnet=3fff:172:20:20::/64 MTU=0
+19:55:32 INFO Creating lab directory path=/home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/clab-sp-core-rr-lab
+19:55:32 INFO Creating container name=as200-site-1
+19:55:32 INFO Creating container name=as100-rr2
+19:55:32 INFO Creating container name=as200-p3
+19:55:32 INFO Creating container name=as200-pe2
+19:55:35 INFO Creating container name=as100-p2
+19:55:35 INFO Creating container name=as200-rr2
+19:55:36 INFO Creating container name=as100-p4
+19:55:38 INFO Created link: as200-rr2:eth2 ▪┄┄▪ as200-p3:eth3
+19:55:38 INFO Created link: as100-rr2:eth1 ▪┄┄▪ as100-p2:eth5
+19:55:39 INFO Created link: as100-p2:eth3 ▪┄┄▪ as100-p4:eth3
+19:55:39 INFO Creating container name=as200-borde1
+19:55:39 INFO Creating container name=as100-rr1
+19:55:40 INFO Creating container name=as100-p3
+19:55:40 INFO Creating container name=as100-p1
+19:55:42 INFO Created link: as200-borde1:eth3 ▪┄┄▪ as200-p3:eth4
+19:55:42 INFO Created link: as100-rr1:eth2 ▪┄┄▪ as100-p2:eth4
+19:55:43 INFO Created link: as100-p2:eth2 ▪┄┄▪ as100-p3:eth1
+19:55:43 INFO Created link: as100-p3:eth2 ▪┄┄▪ as100-p4:eth1
+19:55:43 INFO Created link: as100-rr2:eth2 ▪┄┄▪ as100-p3:eth3
+19:55:43 INFO Creating container name=as200-site-2
+19:55:43 INFO Created link: as100-p1:eth1 ▪┄┄▪ as100-p2:eth1
+19:55:43 INFO Created link: as100-rr1:eth1 ▪┄┄▪ as100-p1:eth3
+19:55:44 INFO Creating container name=as200-site2
+19:55:44 INFO Creating container name=as100-pe1
+19:55:45 INFO Creating container name=as100-site2
+19:55:46 INFO Created link: as200-site-2:eth1 ▪┄┄▪ as200-pe2:eth4
+19:55:46 INFO Created link: as200-site2:eth1 ▪┄┄▪ as200-pe2:eth3
+19:55:47 INFO Created link: as100-pe1:eth1 ▪┄┄▪ as100-p4:eth4
+19:55:47 INFO Creating container name=as200-pe1
+19:55:47 INFO Creating container name=as200-p4
+19:55:49 INFO Creating container name=as100-site1
+19:55:49 INFO Created link: as200-site-1:eth1 ▪┄┄▪ as200-pe1:eth4
+19:55:49 INFO Created link: as200-p3:eth2 ▪┄┄▪ as200-p4:eth1
+19:55:50 INFO Created link: as200-pe1:eth1 ▪┄┄▪ as200-p4:eth4
+19:55:51 INFO Creating container name=as100-site-2
+19:55:51 INFO Created link: as100-site1:eth1 ▪┄┄▪ as100-pe1:eth3
+19:55:51 INFO Creating container name=as200-site1
+19:55:52 INFO Creating container name=as100-borde1
+19:55:53 INFO Creating container name=as100-p5
+19:55:53 INFO Created link: as200-site1:eth1 ▪┄┄▪ as200-pe1:eth3
+19:55:54 INFO Creating container name=as200-p1
+19:55:55 INFO Created link: as100-borde1:eth1 ▪┄┄▪ as200-borde1:eth1
+19:55:55 INFO Creating container name=as100-pe2
+19:55:55 INFO Created link: as100-borde1:eth3 ▪┄┄▪ as100-p3:eth4
+19:55:56 INFO Created link: as100-p4:eth2 ▪┄┄▪ as100-p5:eth1
+19:55:56 INFO Created link: as100-p5:eth2 ▪┄┄▪ as100-p1:eth2
+19:55:56 INFO Created link: as100-pe1:eth2 ▪┄┄▪ as100-p5:eth3
+19:55:57 INFO Creating container name=as100-site-1
+19:55:57 INFO Creating container name=as200-rr1
+19:55:58 INFO Created link: as200-pe2:eth2 ▪┄┄▪ as200-p1:eth4
+19:55:58 INFO Created link: as100-pe2:eth1 ▪┄┄▪ as100-p5:eth4
+19:55:58 INFO Created link: as100-pe2:eth2 ▪┄┄▪ as100-p1:eth4
+19:55:59 INFO Created link: as100-site2:eth1 ▪┄┄▪ as100-pe2:eth3
+19:55:59 INFO Created link: as100-site-2:eth1 ▪┄┄▪ as100-pe2:eth4
+19:55:59 INFO Creating container name=as200-borde2
+19:56:00 INFO Created link: as100-site-1:eth1 ▪┄┄▪ as100-pe1:eth4
+19:56:00 INFO Created link: as200-rr1:eth1 ▪┄┄▪ as200-p1:eth3
+19:56:02 INFO Creating container name=as100-borde2
+19:56:02 INFO Created link: as100-borde1:eth2 ▪┄┄▪ as200-borde2:eth1
+19:56:02 INFO Created link: as200-borde2:eth3 ▪┄┄▪ as200-p4:eth5
+19:56:03 INFO Creating container name=as200-p2
+19:56:04 INFO Creating container name=as200-p5
+19:56:05 INFO Created link: as100-borde2:eth1 ▪┄┄▪ as200-borde1:eth2
+19:56:05 INFO Created link: as100-borde2:eth2 ▪┄┄▪ as200-borde2:eth2
+19:56:06 INFO Created link: as100-borde2:eth3 ▪┄┄▪ as100-p4:eth5
+19:56:06 INFO Created link: as200-p1:eth1 ▪┄┄▪ as200-p2:eth1
+19:56:06 INFO Created link: as200-p4:eth2 ▪┄┄▪ as200-p5:eth1
+19:56:07 INFO Created link: as200-p2:eth2 ▪┄┄▪ as200-p3:eth1
+19:56:07 INFO Created link: as200-p5:eth2 ▪┄┄▪ as200-p1:eth2
+19:56:07 INFO Created link: as200-p2:eth3 ▪┄┄▪ as200-p4:eth3
+19:56:07 INFO Created link: as200-rr1:eth2 ▪┄┄▪ as200-p2:eth4
+19:56:07 INFO Created link: as200-pe1:eth2 ▪┄┄▪ as200-p5:eth3
+19:56:07 INFO Created link: as200-rr2:eth1 ▪┄┄▪ as200-p2:eth5
+19:56:07 INFO Created link: as200-pe2:eth1 ▪┄┄▪ as200-p5:eth4
+19:56:08 INFO Executed command node=as100-rr2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-site-1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-site-1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-rr2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-p3 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-p3 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c ip link add A type vrf table 10" stdout=""
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c ip link set A up" stdout=""
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c ip link set eth3 master A" stdout=""
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c ip link add B type vrf table 20" stdout=""
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c ip link set B up" stdout=""
+19:56:08 INFO Executed command node=as200-rr2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-pe2 command="bash -c ip link set eth4 master B" stdout=""
+19:56:08 INFO Executed command node=as200-rr2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-p2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.eth5.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-p4 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.eth5.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-p2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-p4 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-borde1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-borde1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-rr1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-rr1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-p3 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-p1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-p3 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-p1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-site-2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-site2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-site2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-site-2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c ip link add A type vrf table 10" stdout=""
+19:56:08 INFO Executed command node=as100-site2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c ip link set A up" stdout=""
+19:56:08 INFO Executed command node=as100-site2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c ip link set eth3 master A" stdout=""
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c ip link add B type vrf table 20" stdout=""
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c ip link set B up" stdout=""
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-p4 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.eth5.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-pe1 command="bash -c ip link set eth4 master B" stdout=""
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c ip link add A type vrf table 10" stdout=""
+19:56:08 INFO Executed command node=as200-p4 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c ip link set A up" stdout=""
+19:56:08 INFO Executed command node=as100-site1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c ip link set eth3 master A" stdout=""
+19:56:08 INFO Executed command node=as100-site1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c ip link add B type vrf table 20" stdout=""
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c ip link set B up" stdout=""
+19:56:08 INFO Executed command node=as200-pe1 command="bash -c ip link set eth4 master B" stdout=""
+19:56:08 INFO Executed command node=as100-site-2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-site-2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-site1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-site1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-borde1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-p5 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-borde1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-p5 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-p1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-p1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-site-1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c ip link add A type vrf table 10" stdout=""
+19:56:08 INFO Executed command node=as200-rr1 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-site-1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c ip link set A up" stdout=""
+19:56:08 INFO Executed command node=as200-rr1 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c ip link set eth3 master A" stdout=""
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c ip link add B type vrf table 20" stdout=""
+19:56:08 INFO Executed command node=as200-borde2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-borde2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c ip link set B up" stdout=""
+19:56:08 INFO Executed command node=as100-pe2 command="bash -c ip link set eth4 master B" stdout=""
+19:56:08 INFO Executed command node=as100-borde2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as100-borde2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-p2 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.eth5.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-p5 command="bash -c for int in /proc/sys/net/mpls/conf/*/; do sysctl -w net.mpls.conf.$(basename $int).input=1; done"
+  stdout=
+  │ net.mpls.conf.eth0.input = 1
+  │ net.mpls.conf.eth1.input = 1
+  │ net.mpls.conf.eth2.input = 1
+  │ net.mpls.conf.eth3.input = 1
+  │ net.mpls.conf.eth4.input = 1
+  │ net.mpls.conf.lo.input = 1
+
+19:56:08 INFO Executed command node=as200-p2 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:08 INFO Executed command node=as200-p5 command="bash -c chown -R frr:frr /etc/frr && chmod -R u+rwX,go+rX /etc/frr" stdout=""
+19:56:09 INFO Adding host entries path=/etc/hosts
+19:56:10 INFO Adding SSH config for nodes path=/etc/ssh/ssh_config.d/clab-sp-core-rr-lab.conf
+19:56:10 INFO containerlab version
+  🎉=
+  │ A newer containerlab version (0.83.0) is available!
+  │ Release notes: https://containerlab.dev/rn/0.83/
+  │ Run 'clab version upgrade' or see https://containerlab.dev/install/ for other installation options.
+[1m╭[0m[1m──────────────────────────────────[0m[1m┬[0m[1m────────────────[0m[1m┬[0m[1m─────────[0m[1m┬[0m[1m────────────────────[0m[1m╮[0m
+[1m│[0m[1m               Name               [0m[1m│[0m[1m   Kind/Image   [0m[1m│[0m[1m  State  [0m[1m│[0m[1m   IPv4/6 Address   [0m[1m│[0m
+[1m├[0m[1m──────────────────────────────────[0m[1m┼[0m[1m────────────────[0m[1m┼[0m[1m─────────[0m[1m┼[0m[1m────────────────────[0m[1m┤[0m
+│ clab-sp-core-rr-lab-as100-borde1 │ linux          │ running │ 172.20.20.22       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::16 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-borde2 │ linux          │ running │ 172.20.20.29       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::1d │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-p1     │ linux          │ running │ 172.20.20.12       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::c  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-p2     │ linux          │ running │ 172.20.20.6        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::6  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-p3     │ linux          │ running │ 172.20.20.11       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::b  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-p4     │ linux          │ running │ 172.20.20.8        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::8  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-p5     │ linux          │ running │ 172.20.20.23       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::17 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-pe1    │ linux          │ running │ 172.20.20.15       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::f  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-pe2    │ linux          │ running │ 172.20.20.25       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::19 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-rr1    │ linux          │ running │ 172.20.20.10       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::a  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-rr2    │ linux          │ running │ 172.20.20.3        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::3  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-site-1 │ linux          │ running │ 172.20.20.26       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::1a │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-site-2 │ linux          │ running │ 172.20.20.20       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::14 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-site1  │ linux          │ running │ 172.20.20.19       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::13 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as100-site2  │ linux          │ running │ 172.20.20.16       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::10 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-borde1 │ linux          │ running │ 172.20.20.9        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::9  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-borde2 │ linux          │ running │ 172.20.20.28       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::1c │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-p1     │ linux          │ running │ 172.20.20.24       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::18 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-p2     │ linux          │ running │ 172.20.20.30       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::1e │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-p3     │ linux          │ running │ 172.20.20.4        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::4  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-p4     │ linux          │ running │ 172.20.20.18       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::12 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-p5     │ linux          │ running │ 172.20.20.31       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::1f │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-pe1    │ linux          │ running │ 172.20.20.17       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::11 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-pe2    │ linux          │ running │ 172.20.20.2        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::2  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-rr1    │ linux          │ running │ 172.20.20.27       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::1b │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-rr2    │ linux          │ running │ 172.20.20.7        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::7  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-site-1 │ linux          │ running │ 172.20.20.5        │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::5  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-site-2 │ linux          │ running │ 172.20.20.13       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::d  │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-site1  │ linux          │ running │ 172.20.20.21       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::15 │
+├──────────────────────────────────┼────────────────┼─────────┼────────────────────┤
+│ clab-sp-core-rr-lab-as200-site2  │ linux          │ running │ 172.20.20.14       │
+│                                  │ frr:10.7.1-ssh │         │ 3fff:172:20:20::e  │
+╰──────────────────────────────────┴────────────────┴─────────┴────────────────────╯
+Contenedores activos: 30 de 30
+=== 6. CONFIGURAR POR SSH ===
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-rr1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-rr2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-p1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-p2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-p3.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-p4.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-p5.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-pe1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-site1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-site-1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-pe2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-site2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-site-2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-borde1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as100-borde2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-rr1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-rr2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-p1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-p2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-p3.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-p4.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-p5.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-pe1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-site1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-site-1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-pe2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-site2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-site-2.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-borde1.conf
+GENERADO: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/generated/as200-borde2.conf
+
+OK: 30 configuraciones generadas; routers sin modificar
+OK: as100-p1: aplicado, guardado y consultado
+OK: as100-p2: aplicado, guardado y consultado
+OK: as100-p3: aplicado, guardado y consultado
+OK: as100-p4: aplicado, guardado y consultado
+OK: as100-p5: aplicado, guardado y consultado
+OK: as200-p1: aplicado, guardado y consultado
+OK: as200-p2: aplicado, guardado y consultado
+OK: as200-p3: aplicado, guardado y consultado
+OK: as200-p4: aplicado, guardado y consultado
+OK: as200-p5: aplicado, guardado y consultado
+OK: as100-rr1: aplicado, guardado y consultado
+OK: as100-rr2: aplicado, guardado y consultado
+OK: as200-rr1: aplicado, guardado y consultado
+OK: as200-rr2: aplicado, guardado y consultado
+OK: as100-borde1: aplicado, guardado y consultado
+OK: as100-borde2: aplicado, guardado y consultado
+OK: as200-borde1: aplicado, guardado y consultado
+OK: as200-borde2: aplicado, guardado y consultado
+OK: as100-pe1: aplicado, guardado y consultado
+OK: as100-pe2: aplicado, guardado y consultado
+OK: as200-pe1: aplicado, guardado y consultado
+OK: as200-pe2: aplicado, guardado y consultado
+OK: as100-site-1: aplicado, guardado y consultado
+OK: as100-site-2: aplicado, guardado y consultado
+OK: as100-site1: aplicado, guardado y consultado
+OK: as100-site2: aplicado, guardado y consultado
+OK: as200-site-1: aplicado, guardado y consultado
+OK: as200-site-2: aplicado, guardado y consultado
+OK: as200-site1: aplicado, guardado y consultado
+OK: as200-site2: aplicado, guardado y consultado
+
+Aplicaciones confirmadas: 30/30
+=== 7. ESPERAR CONVERGENCIA ===
+=== 8. VALIDAR POR SSH ===
+OK: as100-rr1
+OK: as100-rr2
+OK: as100-p1
+OK: as100-p2
+OK: as100-p3
+OK: as100-p4
+OK: as100-p5
+OK: as100-pe1
+OK: as100-site1
+OK: as100-site-1
+OK: as100-pe2
+OK: as100-site2
+OK: as100-site-2
+OK: as100-borde1
+OK: as100-borde2
+OK: as200-rr1
+OK: as200-rr2
+OK: as200-p1
+OK: as200-p2
+OK: as200-p3
+OK: as200-p4
+OK: as200-p5
+OK: as200-pe1
+OK: as200-site1
+OK: as200-site-1
+OK: as200-pe2
+OK: as200-site2
+OK: as200-site-2
+OK: as200-borde1
+OK: as200-borde2
+
+Nodos validados: 30/30
+=== 9. CONFIRMAR BASES INTACTAS ===
+OK: PRUEBA DESDE BASES LIMPIAS SUPERADA

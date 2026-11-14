@@ -10,3 +10,4 @@ pc02/escenario02.runtime.yml
 __pycache__/
 *.pyc
 pc02/generated/
+pc02/logs/
