@@ -6,6 +6,65 @@ Configurar y verificar automáticamente la topología del curso mediante
 Python, Netmiko y un inventario YAML. La automatización aplica configuraciones
 FRR por SSH, ejecuta write memory y guarda registros por dispositivo.
 
+## Inicio rápido
+
+Los tres comandos siguientes son la forma recomendada de ejecutar esta entrega.
+Se ejecutan en el anfitrión Linux donde corre Containerlab, desde la raíz
+del repositorio. Requieren Docker, Containerlab, Python 3 con venv/pip,
+acceso a Docker, sudo y la imagen del curso frr:10.7.1-ssh cargada.
+
+### Obtener el código
+
+~~~bash
+git clone --branch main https://github.com/WilmerCO21/TLN03-M-26-2.git PC2-WilmerCO21
+cd PC2-WilmerCO21
+~~~
+
+### 1. Desplegar
+
+~~~bash
+bash pc02/desplegar.sh
+~~~
+
+Prepara el entorno virtual, instala requirements.txt, carga los módulos MPLS,
+prepara o reutiliza runtime y despliega la red. Si el laboratorio pertenece
+a esta carpeta, lo recrea conservando runtime y registros; esto interrumpe
+temporalmente el tráfico. Si pertenece a otra copia del repositorio, se detiene.
+
+### 2. Configurar y guardar
+
+~~~bash
+bash pc02/configurar.sh
+~~~
+
+Ejecuta Python/Netmiko para los 30 nodos, guarda con write memory y espera
+60 segundos de convergencia. Resultado esperado: Aplicaciones confirmadas: 30/30.
+
+### 3. Validar
+
+~~~bash
+bash pc02/validar.sh
+~~~
+
+Ejecuta únicamente la verificación operativa. Resultado esperado: Nodos validados: 30/30.
+
+El acceso SSH de la imagen del laboratorio es admin/admin. sudo solicita
+la contraseña del usuario del anfitrión. Los programas solicitan la clave SSH
+o la leen de PC2_PASSWORD; no la escriben en los registros.
+
+### Resultados y evidencias
+
+Se comprobaron aplicación y validación 30/30, ocho fallas individuales
+toleradas con recuperación completa y reproducción desde un clon nuevo
+con un entorno Python nuevo, en la misma VM Ubuntu del autor.
+
+- [Arranque corregido, registros por nodo y ocho fallas](docs/evidencias/arranque-serial-20261114/README.md).
+- [Despliegue desde un clon nuevo de GitHub](docs/evidencias/reproducibilidad-clon-20261114/README.md).
+
+El código de los tres comandos está en [desplegar.sh](desplegar.sh),
+[configurar.sh](configurar.sh) y [validar.sh](validar.sh).
+Las secciones de ejecución manual permiten revisar las etapas internas.
+
 ## Arquitectura
 
 La topología contiene 30 nodos y 44 enlaces:
@@ -62,7 +121,7 @@ docker load -i /ruta/al/archivo/frr_10.7.1-ssh.tar
 docker image inspect frr:10.7.1-ssh
 ~~~
 
-## Dependencias y acceso
+## Dependencias y acceso: ejecución manual
 
 Ejecutar las instrucciones desde la raíz del repositorio, en el anfitrión
 Linux donde corre Containerlab.
@@ -77,9 +136,9 @@ inventory.yml contiene nombres de gestión, roles, ASN y parámetros de clientes
 Los nombres clab-sp-core-rr-lab-* se resuelven desde el anfitrión del laboratorio.
 
 Se utiliza el usuario admin proporcionado por el curso. El programa solicita
-la contraseña o la lee de PC2_PASSWORD. No se guarda en el código ni en Git.
+la contraseña o la lee de PC2_PASSWORD; no la escribe en sus registros.
 
-## Preparación y despliegue
+## Preparación y despliegue manual
 
 ~~~bash
 sudo modprobe mpls_router
@@ -101,7 +160,7 @@ Para reutilizarlo, desplegar directamente escenario02.runtime.yml.
 Para una prueba limpia, destruir el laboratorio y respaldar o mover runtime
 antes de preparar nuevamente.
 
-## Configuración automática
+## Configuración automática: comando Python
 
 ~~~bash
 python pc02/run.py --method netmiko --all
@@ -123,7 +182,7 @@ de forma general configuraciones ajenas al proyecto.
 Los errores se registran por nodo y se continúa con los siguientes.
 El programa devuelve un código distinto de cero si alguna aplicación falla.
 
-## Validación
+## Validación: comando Python
 
 Después de la convergencia:
 
@@ -203,8 +262,9 @@ Los registros START/END están en /run/frr/pc2-lifecycle.log de cada router.
 La corrección requiere recrear el laboratorio con escenario02.runtime.yml.
 Después: python pc02/run.py --method netmiko --all y python pc02/validate.py.
 Se exige 30/30; no se reinicia LDP automáticamente para ocultar un fallo.
-La relación causal completa con la desaparición del socket debe confirmarse
-con ensayos de arranque limpio antes de declarar el problema resuelto.
+El cambio se verificó mediante arranques limpios con validación 30/30 y
+reproducción desde GitHub. Los registros originales muestran reinicios
+solapados; no se identificó el proceso exacto que retiró el socket.
 
 ## Pruebas del arranque corregido
 
@@ -214,27 +274,20 @@ con ensayos de arranque limpio antes de declarar el problema resuelto.
 
 [Prueba desde un clon nuevo: 30/30](docs/evidencias/reproducibilidad-clon-20261114/README.md)
 
-## Ejecución en tres etapas
+## Pruebas de fallas adicionales
 
-Desde la raíz del repositorio, ejecutar por separado:
-
-~~~bash
-bash pc02/desplegar.sh
-~~~
+Con la red configurada y validada, ejecutar desde la raíz del repositorio:
 
 ~~~bash
-bash pc02/configurar.sh
+.venv/bin/python pc02/test_failover.py --suite demo --execute
 ~~~
 
-~~~bash
-bash pc02/validar.sh
-~~~
+La suite demo ejecuta ocho casos, uno a la vez: caída de eth2 de PE1,
+aislamiento de los cuatro puertos de datos de P5, caída de eth1 de PE2 y
+caída de eth2 de P2, en AS100 y AS200. Restaura cada caso y exige recuperación
+completa antes de continuar. Los casos de router aíslan interfaces; no apagan
+el contenedor. Se observaron pérdidas transitorias durante algunas convergencias.
 
-desplegar.sh prepara el entorno y despliega. Si el laboratorio ya
-pertenece a esta carpeta, lo recrea conservando runtime y registros;
-esto interrumpe temporalmente el tráfico.
-
-configurar.sh aplica y guarda por SSH, y espera 60 segundos de convergencia.
-validar.sh ejecuta únicamente la validación operativa.
-
-Se requieren Docker, Containerlab, sudo y la imagen del curso disponibles.
+Los ocho casos ensayados fueron tolerados. Esto no certifica todas las fallas
+posibles ni redundancia eBGP completa. Los resultados están en
+[resumen.csv](docs/evidencias/arranque-serial-20261114/resumen.csv).
