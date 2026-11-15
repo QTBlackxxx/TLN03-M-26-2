@@ -1,0 +1,320 @@
+01. link-as100-pe1-eth2: as100-pe1 -> eth2
+02. node-as100-p5: as100-p5 -> eth1, eth2, eth3, eth4
+03. link-as100-pe2-eth1: as100-pe2 -> eth1
+04. link-as100-p2-eth2: as100-p2 -> eth2
+05. link-as200-pe1-eth2: as200-pe1 -> eth2
+06. node-as200-p5: as200-p5 -> eth1, eth2, eth3, eth4
+07. link-as200-pe2-eth1: as200-pe2 -> eth1
+08. link-as200-p2-eth2: as200-p2 -> eth2
+
+Casos: 8. Flujos por ronda: 10.
+Un solo caso activo cada vez. Aislar un nodo no equivale a apagar su contenedor.
+EVIDENCIAS: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/logs/fallas-auto/20261114-143426-610114
+  Validación completa: inicial; intento 1/1
+  OK: 30/30
+
+CASO 1/8
+
+=== link-as100-pe1-eth2: enlace; ('eth2',) ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 3/75s: 6/10 flujos
+  FALLA ACTIVA 6/75s: 10/10 flujos
+  FALLA ACTIVA 9/75s: 10/10 flujos
+  FALLA ACTIVA 13/75s: 10/10 flujos
+  FALLA ACTIVA 16/75s: 10/10 flujos
+  FALLA ACTIVA 19/75s: 10/10 flujos
+  FALLA ACTIVA 23/75s: 10/10 flujos
+  FALLA ACTIVA 26/75s: 10/10 flujos
+  FALLA ACTIVA 29/75s: 10/10 flujos
+  FALLA ACTIVA 33/75s: 10/10 flujos
+  FALLA ACTIVA 36/75s: 10/10 flujos
+  FALLA ACTIVA 40/75s: 10/10 flujos
+  FALLA ACTIVA 43/75s: 10/10 flujos
+  FALLA ACTIVA 46/75s: 10/10 flujos
+  FALLA ACTIVA 49/75s: 10/10 flujos
+  FALLA ACTIVA 53/75s: 10/10 flujos
+  FALLA ACTIVA 56/75s: 10/10 flujos
+  FALLA ACTIVA 60/75s: 10/10 flujos
+  FALLA ACTIVA 64/75s: 10/10 flujos
+  FALLA ACTIVA 67/75s: 10/10 flujos
+  FALLA ACTIVA 71/75s: 10/10 flujos
+  FALLA ACTIVA 75/75s: 10/10 flujos
+  FALLA ACTIVA 78/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as100-pe1:eth2
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: link-as100-pe1-eth2; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 2/8
+
+=== node-as100-p5: aislamiento; ('eth1', 'eth2', 'eth3', 'eth4') ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 3/75s: 6/10 flujos
+  FALLA ACTIVA 6/75s: 10/10 flujos
+  FALLA ACTIVA 10/75s: 10/10 flujos
+  FALLA ACTIVA 13/75s: 10/10 flujos
+  FALLA ACTIVA 16/75s: 10/10 flujos
+  FALLA ACTIVA 20/75s: 10/10 flujos
+  FALLA ACTIVA 23/75s: 10/10 flujos
+  FALLA ACTIVA 26/75s: 10/10 flujos
+  FALLA ACTIVA 29/75s: 10/10 flujos
+  FALLA ACTIVA 33/75s: 10/10 flujos
+  FALLA ACTIVA 36/75s: 10/10 flujos
+  FALLA ACTIVA 39/75s: 10/10 flujos
+  FALLA ACTIVA 42/75s: 10/10 flujos
+  FALLA ACTIVA 46/75s: 10/10 flujos
+  FALLA ACTIVA 49/75s: 10/10 flujos
+  FALLA ACTIVA 52/75s: 10/10 flujos
+  FALLA ACTIVA 56/75s: 10/10 flujos
+  FALLA ACTIVA 59/75s: 10/10 flujos
+  FALLA ACTIVA 62/75s: 10/10 flujos
+  FALLA ACTIVA 66/75s: 10/10 flujos
+  FALLA ACTIVA 69/75s: 10/10 flujos
+  FALLA ACTIVA 72/75s: 10/10 flujos
+  FALLA ACTIVA 75/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as100-p5:eth1
+  RESTAURADO: clab-sp-core-rr-lab-as100-p5:eth2
+  RESTAURADO: clab-sp-core-rr-lab-as100-p5:eth3
+  RESTAURADO: clab-sp-core-rr-lab-as100-p5:eth4
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: node-as100-p5; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 3/8
+
+=== link-as100-pe2-eth1: enlace; ('eth1',) ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 3/75s: 6/10 flujos
+  FALLA ACTIVA 7/75s: 10/10 flujos
+  FALLA ACTIVA 11/75s: 10/10 flujos
+  FALLA ACTIVA 14/75s: 10/10 flujos
+  FALLA ACTIVA 18/75s: 10/10 flujos
+  FALLA ACTIVA 22/75s: 10/10 flujos
+  FALLA ACTIVA 25/75s: 10/10 flujos
+  FALLA ACTIVA 29/75s: 10/10 flujos
+  FALLA ACTIVA 33/75s: 10/10 flujos
+  FALLA ACTIVA 36/75s: 10/10 flujos
+  FALLA ACTIVA 40/75s: 10/10 flujos
+  FALLA ACTIVA 43/75s: 10/10 flujos
+  FALLA ACTIVA 47/75s: 10/10 flujos
+  FALLA ACTIVA 51/75s: 10/10 flujos
+  FALLA ACTIVA 55/75s: 10/10 flujos
+  FALLA ACTIVA 59/75s: 10/10 flujos
+  FALLA ACTIVA 62/75s: 10/10 flujos
+  FALLA ACTIVA 66/75s: 10/10 flujos
+  FALLA ACTIVA 70/75s: 10/10 flujos
+  FALLA ACTIVA 73/75s: 10/10 flujos
+  FALLA ACTIVA 77/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as100-pe2:eth1
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: link-as100-pe2-eth1; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 4/8
+
+=== link-as100-p2-eth2: enlace; ('eth2',) ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 1/75s: 10/10 flujos
+  FALLA ACTIVA 5/75s: 10/10 flujos
+  FALLA ACTIVA 8/75s: 10/10 flujos
+  FALLA ACTIVA 12/75s: 10/10 flujos
+  FALLA ACTIVA 16/75s: 10/10 flujos
+  FALLA ACTIVA 19/75s: 10/10 flujos
+  FALLA ACTIVA 23/75s: 10/10 flujos
+  FALLA ACTIVA 27/75s: 10/10 flujos
+  FALLA ACTIVA 30/75s: 10/10 flujos
+  FALLA ACTIVA 34/75s: 10/10 flujos
+  FALLA ACTIVA 37/75s: 10/10 flujos
+  FALLA ACTIVA 41/75s: 10/10 flujos
+  FALLA ACTIVA 45/75s: 10/10 flujos
+  FALLA ACTIVA 49/75s: 10/10 flujos
+  FALLA ACTIVA 52/75s: 10/10 flujos
+  FALLA ACTIVA 57/75s: 10/10 flujos
+  FALLA ACTIVA 61/75s: 10/10 flujos
+  FALLA ACTIVA 64/75s: 10/10 flujos
+  FALLA ACTIVA 67/75s: 10/10 flujos
+  FALLA ACTIVA 71/75s: 10/10 flujos
+  FALLA ACTIVA 74/75s: 10/10 flujos
+  FALLA ACTIVA 78/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as100-p2:eth2
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: link-as100-p2-eth2; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 5/8
+
+=== link-as200-pe1-eth2: enlace; ('eth2',) ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 3/75s: 6/10 flujos
+  FALLA ACTIVA 7/75s: 10/10 flujos
+  FALLA ACTIVA 11/75s: 10/10 flujos
+  FALLA ACTIVA 15/75s: 10/10 flujos
+  FALLA ACTIVA 18/75s: 10/10 flujos
+  FALLA ACTIVA 22/75s: 10/10 flujos
+  FALLA ACTIVA 26/75s: 10/10 flujos
+  FALLA ACTIVA 30/75s: 10/10 flujos
+  FALLA ACTIVA 33/75s: 10/10 flujos
+  FALLA ACTIVA 37/75s: 10/10 flujos
+  FALLA ACTIVA 41/75s: 10/10 flujos
+  FALLA ACTIVA 45/75s: 10/10 flujos
+  FALLA ACTIVA 48/75s: 10/10 flujos
+  FALLA ACTIVA 52/75s: 10/10 flujos
+  FALLA ACTIVA 56/75s: 10/10 flujos
+  FALLA ACTIVA 59/75s: 10/10 flujos
+  FALLA ACTIVA 63/75s: 10/10 flujos
+  FALLA ACTIVA 67/75s: 10/10 flujos
+  FALLA ACTIVA 70/75s: 10/10 flujos
+  FALLA ACTIVA 74/75s: 10/10 flujos
+  FALLA ACTIVA 78/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as200-pe1:eth2
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: link-as200-pe1-eth2; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 6/8
+
+=== node-as200-p5: aislamiento; ('eth1', 'eth2', 'eth3', 'eth4') ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 1/75s: 6/10 flujos
+  FALLA ACTIVA 5/75s: 6/10 flujos
+  FALLA ACTIVA 8/75s: 10/10 flujos
+  FALLA ACTIVA 12/75s: 10/10 flujos
+  FALLA ACTIVA 16/75s: 10/10 flujos
+  FALLA ACTIVA 19/75s: 10/10 flujos
+  FALLA ACTIVA 23/75s: 10/10 flujos
+  FALLA ACTIVA 27/75s: 10/10 flujos
+  FALLA ACTIVA 30/75s: 10/10 flujos
+  FALLA ACTIVA 34/75s: 10/10 flujos
+  FALLA ACTIVA 38/75s: 10/10 flujos
+  FALLA ACTIVA 41/75s: 10/10 flujos
+  FALLA ACTIVA 45/75s: 10/10 flujos
+  FALLA ACTIVA 48/75s: 10/10 flujos
+  FALLA ACTIVA 52/75s: 10/10 flujos
+  FALLA ACTIVA 55/75s: 10/10 flujos
+  FALLA ACTIVA 59/75s: 10/10 flujos
+  FALLA ACTIVA 63/75s: 10/10 flujos
+  FALLA ACTIVA 67/75s: 10/10 flujos
+  FALLA ACTIVA 70/75s: 10/10 flujos
+  FALLA ACTIVA 74/75s: 10/10 flujos
+  FALLA ACTIVA 78/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as200-p5:eth1
+  RESTAURADO: clab-sp-core-rr-lab-as200-p5:eth2
+  RESTAURADO: clab-sp-core-rr-lab-as200-p5:eth3
+  RESTAURADO: clab-sp-core-rr-lab-as200-p5:eth4
+  recuperación: 6/10 flujos; estabilidad 0/3
+  recuperación: 8/10 flujos; estabilidad 0/3
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: node-as200-p5; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 7/8
+
+=== link-as200-pe2-eth1: enlace; ('eth1',) ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 3/75s: 6/10 flujos
+  FALLA ACTIVA 6/75s: 10/10 flujos
+  FALLA ACTIVA 10/75s: 10/10 flujos
+  FALLA ACTIVA 14/75s: 10/10 flujos
+  FALLA ACTIVA 18/75s: 10/10 flujos
+  FALLA ACTIVA 21/75s: 10/10 flujos
+  FALLA ACTIVA 25/75s: 10/10 flujos
+  FALLA ACTIVA 28/75s: 10/10 flujos
+  FALLA ACTIVA 32/75s: 10/10 flujos
+  FALLA ACTIVA 36/75s: 10/10 flujos
+  FALLA ACTIVA 39/75s: 10/10 flujos
+  FALLA ACTIVA 43/75s: 10/10 flujos
+  FALLA ACTIVA 47/75s: 10/10 flujos
+  FALLA ACTIVA 51/75s: 10/10 flujos
+  FALLA ACTIVA 55/75s: 10/10 flujos
+  FALLA ACTIVA 58/75s: 10/10 flujos
+  FALLA ACTIVA 63/75s: 10/10 flujos
+  FALLA ACTIVA 66/75s: 10/10 flujos
+  FALLA ACTIVA 70/75s: 10/10 flujos
+  FALLA ACTIVA 73/75s: 10/10 flujos
+  FALLA ACTIVA 76/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as200-pe2:eth1
+  recuperación: 6/10 flujos; estabilidad 0/3
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: link-as200-pe2-eth1; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+CASO 8/8
+
+=== link-as200-p2-eth2: enlace; ('eth2',) ===
+  antes: 10/10 flujos; estabilidad 1/3
+  antes: 10/10 flujos; estabilidad 2/3
+  antes: 10/10 flujos; estabilidad 3/3
+  FALLA ACTIVA 1/75s: 10/10 flujos
+  FALLA ACTIVA 5/75s: 10/10 flujos
+  FALLA ACTIVA 9/75s: 10/10 flujos
+  FALLA ACTIVA 13/75s: 10/10 flujos
+  FALLA ACTIVA 16/75s: 10/10 flujos
+  FALLA ACTIVA 20/75s: 10/10 flujos
+  FALLA ACTIVA 25/75s: 10/10 flujos
+  FALLA ACTIVA 28/75s: 10/10 flujos
+  FALLA ACTIVA 32/75s: 10/10 flujos
+  FALLA ACTIVA 35/75s: 10/10 flujos
+  FALLA ACTIVA 39/75s: 10/10 flujos
+  FALLA ACTIVA 43/75s: 10/10 flujos
+  FALLA ACTIVA 46/75s: 10/10 flujos
+  FALLA ACTIVA 50/75s: 10/10 flujos
+  FALLA ACTIVA 54/75s: 10/10 flujos
+  FALLA ACTIVA 58/75s: 10/10 flujos
+  FALLA ACTIVA 61/75s: 10/10 flujos
+  FALLA ACTIVA 65/75s: 10/10 flujos
+  FALLA ACTIVA 68/75s: 10/10 flujos
+  FALLA ACTIVA 72/75s: 10/10 flujos
+  FALLA ACTIVA 76/75s: 10/10 flujos
+  RESTAURADO: clab-sp-core-rr-lab-as200-p2:eth2
+  recuperación: 10/10 flujos; estabilidad 1/3
+  recuperación: 10/10 flujos; estabilidad 2/3
+  recuperación: 10/10 flujos; estabilidad 3/3
+  Esperando 20 segundos para recuperar protocolos...
+  Validación completa: link-as200-p2-eth2; intento 1/3
+  OK: 30/30
+  RESULTADO: TOLERADO; recuperación completa OK
+
+Final: 8/8 casos tolerados; todos recuperados.
+Resumen: /home/wilmer/Trabajos/PC2/TLN03-M-26-2/pc02/logs/fallas-auto/20261114-143426-610114/resumen.csv

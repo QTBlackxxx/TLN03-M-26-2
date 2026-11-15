@@ -1,0 +1,9 @@
+caso,tipo,resultado,observacion_segundos,primer_bloque_3_rondas_segundos,flujos_fallidos_finales,recuperacion
+link-as100-pe1-eth2,enlace,TOLERADO,75,12.56,,OK
+node-as100-p5,aislamiento,TOLERADO,75,12.99,,OK
+link-as100-pe2-eth1,enlace,TOLERADO,75,14.19,,OK
+link-as100-p2-eth2,enlace,TOLERADO,75,8.36,,OK
+link-as200-pe1-eth2,enlace,TOLERADO,75,14.69,,OK
+node-as200-p5,aislamiento,TOLERADO,75,16.07,,OK
+link-as200-pe2-eth1,enlace,TOLERADO,75,13.9,,OK
+link-as200-p2-eth2,enlace,TOLERADO,75,8.95,,OK

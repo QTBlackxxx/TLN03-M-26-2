@@ -50,6 +50,9 @@ topology:
       - bash -c "ip link add A type vrf table 10"
       - bash -c "ip link set A up"
       - bash -c "ip link set eth3 master A"
+      - bash -c "ip link add B type vrf table 20"
+      - bash -c "ip link set B up"
+      - bash -c "ip link set eth4 master B"
 
     as100-site1:
       binds:
@@ -66,6 +69,9 @@ topology:
       - bash -c "ip link add A type vrf table 10"
       - bash -c "ip link set A up"
       - bash -c "ip link set eth3 master A"
+      - bash -c "ip link add B type vrf table 20"
+      - bash -c "ip link set B up"
+      - bash -c "ip link set eth4 master B"
 
     as100-site2:
       binds:
@@ -116,6 +122,9 @@ topology:
       - bash -c "ip link add A type vrf table 10"
       - bash -c "ip link set A up"
       - bash -c "ip link set eth3 master A"
+      - bash -c "ip link add B type vrf table 20"
+      - bash -c "ip link set B up"
+      - bash -c "ip link set eth4 master B"
 
     as200-site1:
       binds:
@@ -132,6 +141,9 @@ topology:
       - bash -c "ip link add A type vrf table 10"
       - bash -c "ip link set A up"
       - bash -c "ip link set eth3 master A"
+      - bash -c "ip link add B type vrf table 20"
+      - bash -c "ip link set B up"
+      - bash -c "ip link set eth4 master B"
 
     as200-site2:
       binds:
