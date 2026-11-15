@@ -83,29 +83,37 @@ echo '=== 2/3: MÓDULOS Y TOPOLOGÍA ==='
 sudo modprobe mpls_router
 sudo modprobe mpls_iptunnel
 
-if [[ -d pc02/runtime && -f pc02/escenario02.runtime.yml ]]; then
-    echo 'Reutilizando runtime y las configuraciones guardadas.'
-elif [[ ! -e pc02/runtime && ! -e pc02/escenario02.runtime.yml ]]; then
-    "$python_pc2" pc02/prepare_runtime.py
-else
-    fallar_pc2 'runtime está incompleto; revise la preparación.'
-fi
+# Validamos y generamos las configuraciones finales sin aplicarlas todavía.
+# Esto permite detectar errores del inventario antes de interrumpir la red.
+"$python_pc2" pc02/build_configs.py
 
-if [[ ! -e pc02/escenario02.runtime.yml.annotations.json ]]; then
-    cp pc02/escenario02.yml.annotations.json \
-       pc02/escenario02.runtime.yml.annotations.json
-fi
-
-containerlab validate -t pc02/escenario02.runtime.yml
-
-echo '=== 3/3: DESPLIEGUE ==='
 if (( existentes_pc2 > 0 )); then
-    echo 'Recreando la red de esta carpeta; runtime se conserva.'
+    [[ -f pc02/escenario02.runtime.yml ]] ||
+        fallar_pc2 'Falta la topología del laboratorio activo; no se modifica.'
+    echo 'Retirando el laboratorio de esta carpeta para un arranque vacío.'
     sudo containerlab destroy \
       -t pc02/escenario02.runtime.yml --cleanup
 fi
 
+if [[ -e pc02/runtime || -e pc02/escenario02.runtime.yml ]]; then
+    mkdir -p "$HOME/Respaldos-PC2"
+    respaldo_pc2="$(mktemp -d "$HOME/Respaldos-PC2/vacio-XXXXXXXX")"
+    for anterior_pc2 in pc02/runtime pc02/escenario02.runtime.yml; do
+        if [[ -e "$anterior_pc2" ]]; then
+            sudo mv -- "$anterior_pc2" "$respaldo_pc2/"
+        fi
+    done
+    printf 'Estado anterior respaldado en: %s\n' "$respaldo_pc2"
+fi
+
+"$python_pc2" pc02/prepare_runtime.py
+cp pc02/escenario02.yml.annotations.json \
+   pc02/escenario02.runtime.yml.annotations.json
+containerlab validate -t pc02/escenario02.runtime.yml
+
+echo '=== 3/3: DESPLIEGUE SIN CONFIGURACIÓN DE LA PRÁCTICA ==='
 sudo containerlab deploy \
   -t pc02/escenario02.runtime.yml --max-workers 4
 
-echo 'OK: red desplegada. Continúe con bash pc02/configurar.sh'
+"$python_pc2" pc02/check_empty.py
+echo 'OK: 30 routers sin configuración de la práctica. Ejecute bash pc02/configurar.sh'

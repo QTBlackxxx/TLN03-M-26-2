@@ -26,10 +26,13 @@ cd PC2-WilmerCO21
 bash pc02/desplegar.sh
 ~~~
 
-Prepara el entorno virtual, instala requirements.txt, carga los módulos MPLS,
-prepara o reutiliza runtime y despliega la red. Si el laboratorio pertenece
-a esta carpeta, lo recrea conservando runtime y registros; esto interrumpe
-temporalmente el tráfico. Si pertenece a otra copia del repositorio, se detiene.
+Prepara el entorno virtual, instala requirements.txt y carga los módulos MPLS.
+Retira el laboratorio de esta carpeta, respalda el runtime anterior y crea
+uno nuevo sin configuración de enrutamiento de la práctica. Conserva gestión,
+SSH, hostname y procesos FRR. No precarga IP de datos, IGP, BGP, LDP ni VRF.
+Si pertenece a otra copia del repositorio, se detiene antes de retirarlo.
+Al terminar exige `Routers vacíos comprobados: 30/30` y guarda evidencia
+por nodo en logs/antes-python/. El despliegue interrumpe el tráfico previo.
 
 ### 2. Configurar y guardar
 
@@ -37,8 +40,10 @@ temporalmente el tráfico. Si pertenece a otra copia del repositorio, se detiene
 bash pc02/configurar.sh
 ~~~
 
-Ejecuta Python/Netmiko para los 30 nodos, guarda con write memory y espera
-60 segundos de convergencia. Resultado esperado: Aplicaciones confirmadas: 30/30.
+Ejecuta Python/Netmiko para los 30 nodos. Python crea las VRF Linux de los PE
+mediante Docker local y aplica por SSH sus configuraciones FRR completas.
+Utiliza las bases del profesor como plantillas, genera los bloques de clientes,
+guarda con write memory y espera 60 segundos de convergencia. Resultado esperado: Aplicaciones confirmadas: 30/30.
 
 ### 3. Validar
 
@@ -52,7 +57,13 @@ El acceso SSH de la imagen del laboratorio es admin/admin. sudo solicita
 la contraseña del usuario del anfitrión. Los programas solicitan la clave SSH
 o la leen de PC2_PASSWORD; no la escriben en los registros.
 
-### Resultados y evidencias
+### Prueba requerida del nuevo modo vacío
+
+Ejecutar desplegar.sh, comprobar 30/30 vacíos, ejecutar configurar.sh y exigir
+30/30 aplicaciones, y finalmente validar.sh con 30/30. Hasta completar esa
+prueba, los registros históricos siguientes no certifican este modo nuevo.
+
+### Resultados y evidencias históricas
 
 Se comprobaron aplicación y validación 30/30, ocho fallas individuales
 toleradas con recuperación completa y reproducción desde un clon nuevo
@@ -148,17 +159,19 @@ containerlab validate -t pc02/escenario02.runtime.yml
 sudo containerlab deploy -t pc02/escenario02.runtime.yml --max-workers 4
 ~~~
 
-El preparador copia las bases a runtime/configs y genera una topología
-de ejecución con los mismos nodos y enlaces. Habilita guardado integrado
-y prepara los permisos necesarios para write memory.
+El preparador copia solo daemons y crea frr.conf mínimo y vtysh.conf en
+runtime/configs. No copia ningún .conf del profesor. Genera una topología
+con los mismos nodos y enlaces, conserva el arranque serializado y prepara
+los permisos para write memory.
 
-Containerlab crea las VRF Linux y asocia las interfaces. Python configura
-por SSH los protocolos y los anuncios de las VRF en FRR.
+Las VRF Linux y sus asociaciones de puertos se crean en run.py durante la
+fase de configuración, mediante Docker como root en los PE. El usuario
+admin sigue aplicando por SSH/Netmiko los protocolos y anuncios FRR.
 
 Si runtime ya existe, el preparador se detiene para no sobrescribir el estado.
-Para reutilizarlo, desplegar directamente escenario02.runtime.yml.
-Para una prueba limpia, destruir el laboratorio y respaldar o mover runtime
-antes de preparar nuevamente.
+Desplegar directamente un runtime ya configurado conserva su configuración.
+Para la demostración desde routers vacíos, utilizar desplegar.sh, que respalda
+el estado anterior y prepara uno nuevo sin configuración de la práctica.
 
 ## Configuración automática: comando Python
 
@@ -207,10 +220,12 @@ tolerancia a cualquier falla ni disponibilidad permanente.
 
 ## Archivos y registros
 
-- configs/: bases del profesor; los routers no escriben en ellas.
+- configs/: plantillas del profesor; no se montan en los routers.
 - inventory.yml: datos de acceso y diseño.
 - build_configs.py: genera configuraciones FRR.
-- prepare_runtime.py: prepara las copias y la topología de ejecución.
+- prepare_runtime.py: prepara FRR mínimo y la topología de ejecución.
+- check_empty.py: registra y comprueba los 30 routers antes de configurar.
+- linux_vrf.py: crea VRF Linux durante la fase de configuración.
 - run.py: aplica, guarda y consulta por SSH.
 - validate.py: verifica el funcionamiento por SSH.
 - generated/: archivos regenerables, excluidos de Git.
@@ -229,6 +244,9 @@ sudo containerlab destroy -t pc02/escenario02.runtime.yml --cleanup
 Se conservan runtime, las bases y los registros.
 
 ## Problemas corregidos
+
+- Arranque preconfigurado: se reemplaza la copia de bases por FRR mínimo.
+  Cada despliegue respalda runtime y exige comprobar 30/30 vacíos antes de Python.
 
 - Módulos MPLS ausentes: carga antes del despliegue.
 - Guardado parcial: configuración integrada y permisos de ejecución.

@@ -39,12 +39,26 @@ bash pc02/validar.sh
 SSH de la imagen del laboratorio: usuario **admin**, contraseña **admin**.
 sudo utiliza la contraseña del usuario del anfitrión Linux.
 
-El despliegue prepara las dependencias y la topología runtime con la
-corrección de arranque. Si el laboratorio ya pertenece a esa carpeta,
-lo recrea conservando runtime y registros; el tráfico se interrumpe durante
-el proceso. Si pertenece a otra copia, se detiene antes de retirarlo.
+El despliegue prepara las dependencias y crea los 30 FRR sin configuración
+de enrutamiento de la práctica. Conserva SSH, los procesos FRR y la gestión.
+No precarga IGP, BGP, LDP, direcciones de datos ni VRF. Si existe un laboratorio
+de esa carpeta, lo retira y respalda runtime antes de crear uno nuevo vacío.
+Interrumpe el tráfico. Si pertenece a otra copia, se detiene antes de retirarlo.
 
-### Resultados comprobados
+Antes de configurar, exige `Routers vacíos comprobados: 30/30` y guarda
+la evidencia en `pc02/logs/antes-python/`. Después, configurar.sh ejecuta Python,
+prepara las VRF Linux de los PE mediante Docker y aplica FRR por SSH/Netmiko.
+Los archivos del profesor se utilizan como plantillas al configurar,
+no como configuración inicial de los contenedores.
+
+### Verificación del nuevo arranque vacío
+
+Esta corrección requiere repetir en la VM el ciclo: 30/30 vacíos antes de
+Python, 30/30 aplicaciones y 30/30 validaciones después. Las pruebas históricas
+siguientes corresponden al despliegue anterior desde las bases del profesor;
+no prueban por sí solas este nuevo arranque vacío.
+
+### Resultados históricos comprobados
 
 | Ensayo | Resultado |
 |---|---|
