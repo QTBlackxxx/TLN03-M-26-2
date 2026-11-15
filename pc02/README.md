@@ -31,8 +31,8 @@ Retira el laboratorio de esta carpeta, respalda el runtime anterior y crea
 uno nuevo sin configuración de enrutamiento de la práctica. Conserva gestión,
 SSH, hostname y procesos FRR. No precarga IP de datos, IGP, BGP, LDP ni VRF.
 Si pertenece a otra copia del repositorio, se detiene antes de retirarlo.
-Al terminar exige `Routers vacíos comprobados: 30/30` y guarda evidencia
-por nodo en logs/antes-python/. El despliegue interrumpe el tráfico previo.
+Al terminar exige 30/30 routers vacíos y guarda evidencia
+por nodo en logs/antes-python/. Muestra RED DESPLEGADA SIN CONFIGURACION. El despliegue interrumpe el tráfico previo.
 
 ### 2. Configurar y guardar
 
@@ -43,7 +43,7 @@ bash pc02/configurar.sh
 Ejecuta Python/Netmiko para los 30 nodos. Python crea las VRF Linux de los PE
 mediante Docker local y aplica por SSH sus configuraciones FRR completas.
 Utiliza las bases del profesor como plantillas, genera los bloques de clientes,
-guarda con write memory y espera 60 segundos de convergencia. Resultado esperado: Aplicaciones confirmadas: 30/30.
+guarda con write memory y espera 60 segundos de convergencia. Resultado esperado: Routers configurados: 30/30 y TODOS LOS DISPOSITIVOS CONFIGURADOS.
 
 ### 3. Validar
 
@@ -51,17 +51,35 @@ guarda con write memory y espera 60 segundos de convergencia. Resultado esperado
 bash pc02/validar.sh
 ~~~
 
-Ejecuta únicamente la verificación operativa. Resultado esperado: Nodos validados: 30/30.
+Ejecuta únicamente la verificación operativa. Resultado esperado: RED CONFIGURADA FUNCIONAL (exige 30/30 en el registro).
 
 El acceso SSH de la imagen del laboratorio es admin/admin. sudo solicita
 la contraseña del usuario del anfitrión. Los programas solicitan la clave SSH
 o la leen de PC2_PASSWORD; no la escriben en los registros.
 
-### Prueba requerida del nuevo modo vacío
+### Prueba superada desde routers vacíos
 
-Ejecutar desplegar.sh, comprobar 30/30 vacíos, ejecutar configurar.sh y exigir
-30/30 aplicaciones, y finalmente validar.sh con 30/30. Hasta completar esa
-prueba, los registros históricos siguientes no certifican este modo nuevo.
+En un clon nuevo de GitHub, con entorno Python nuevo y runtime nuevo,
+se comprobaron 30/30 routers vacíos; después, Python/Netmiko aplicó y guardó
+30/30 configuraciones y el validador confirmó 30/30 nodos. Las configuraciones
+base del profesor permanecieron intactas. La prueba se realizó en la VM Ubuntu
+del autor con la imagen y los requisitos del curso disponibles.
+
+[Evidencias del arranque vacío y configuración posterior](docs/evidencias/arranque-vacio-20261114/README.md).
+
+### Mensajes finales
+
+| Comando | Resultado si termina correctamente |
+|---|---|
+| bash pc02/desplegar.sh | RED DESPLEGADA SIN CONFIGURACION |
+| bash pc02/configurar.sh | Routers configurados: 30/30 y TODOS LOS DISPOSITIVOS CONFIGURADOS |
+| bash pc02/validar.sh | RED CONFIGURADA FUNCIONAL |
+
+Los tres Bash conservan el detalle completo en pc02/logs/etapas/.
+Las solicitudes de contraseña permanecen interactivas. Si una etapa falla,
+muestra el error y la ubicación del registro, devuelve un código distinto
+de cero y no imprime el mensaje de éxito.
+
 
 ### Resultados y evidencias históricas
 

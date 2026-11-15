@@ -1,0 +1,19 @@
+=== vtysh -c show running-config ===
+Building configuration...
+
+Current configuration:
+!
+frr version 10.7.1
+frr defaults traditional
+hostname as100-pe1
+service integrated-vtysh-config
+!
+end
+
+=== ip -j address show ===
+[{"ifindex":1,"ifname":"lo","flags":["LOOPBACK","UP","LOWER_UP"],"mtu":65536,"qdisc":"noqueue","operstate":"UNKNOWN","group":"default","txqlen":1000,"link_type":"loopback","address":"00:00:00:00:00:00","broadcast":"00:00:00:00:00:00","addr_info":[{"family":"inet","local":"127.0.0.1","prefixlen":8,"scope":"host","label":"lo","valid_life_time":4294967295,"preferred_life_time":4294967295},{"family":"inet6","local":"::1","prefixlen":128,"scope":"host","protocol":"kernel_lo","valid_life_time":4294967295,"preferred_life_time":4294967295}]},{"ifindex":2,"link_index":410,"ifname":"eth0","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":1500,"qdisc":"noqueue","operstate":"UP","group":"default","link_type":"ether","address":"86:d6:ef:99:21:16","broadcast":"ff:ff:ff:ff:ff:ff","link_netnsid":0,"addr_info":[{"family":"inet","local":"172.20.20.26","prefixlen":24,"broadcast":"172.20.20.255","scope":"global","label":"eth0","valid_life_time":4294967295,"preferred_life_time":4294967295},{"family":"inet6","local":"3fff:172:20:20::1a","prefixlen":64,"scope":"global","nodad":true,"valid_life_time":4294967295,"preferred_life_time":4294967295},{"family":"inet6","local":"fe80::84d6:efff:fe99:2116","prefixlen":64,"scope":"link","protocol":"kernel_ll","valid_life_time":4294967295,"preferred_life_time":4294967295}]},{"ifindex":330,"link_index":331,"ifname":"eth1","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":9500,"qdisc":"noqueue","operstate":"UP","group":"default","link_type":"ether","address":"aa:c1:ab:11:70:72","broadcast":"ff:ff:ff:ff:ff:ff","link_netnsid":1,"altnames":["clab-o-1e16921c0bfb036a"],"addr_info":[{"family":"inet6","local":"fe80::a8c1:abff:fe11:7072","prefixlen":64,"scope":"link","protocol":"kernel_ll","valid_life_time":4294967295,"preferred_life_time":4294967295}]},{"ifindex":370,"link_index":371,"ifname":"eth4","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":9500,"qdisc":"noqueue","operstate":"UP","group":"default","link_type":"ether","address":"aa:c1:ab:74:7d:ce","broadcast":"ff:ff:ff:ff:ff:ff","link_netnsid":3,"altnames":["clab-o-03860120aff7744d"],"addr_info":[{"family":"inet6","local":"fe80::a8c1:abff:fe74:7dce","prefixlen":64,"scope":"link","protocol":"kernel_ll","valid_life_time":4294967295,"preferred_life_time":4294967295}]},{"ifindex":394,"link_index":395,"ifname":"eth2","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":9500,"qdisc":"noqueue","operstate":"UP","group":"default","link_type":"ether","address":"aa:c1:ab:37:41:e5","broadcast":"ff:ff:ff:ff:ff:ff","link_netnsid":2,"altnames":["clab-o-5c9c971027da1d4e"],"addr_info":[{"family":"inet6","local":"fe80::a8c1:abff:fe37:41e5","prefixlen":64,"scope":"link","protocol":"kernel_ll","valid_life_time":4294967295,"preferred_life_time":4294967295}]},{"ifindex":415,"link_index":414,"ifname":"eth3","flags":["BROADCAST","MULTICAST","UP","LOWER_UP"],"mtu":9500,"qdisc":"noqueue","operstate":"UP","group":"default","link_type":"ether","address":"aa:c1:ab:8d:e0:48","broadcast":"ff:ff:ff:ff:ff:ff","link_netnsid":4,"altnames":["clab-o-5c23ee115ee752bf"],"addr_info":[{"family":"inet6","local":"fe80::a8c1:abff:fe8d:e048","prefixlen":64,"scope":"link","protocol":"kernel_ll","valid_life_time":4294967295,"preferred_life_time":4294967295}]}]
+
+=== ip -j -d link show type vrf ===
+[]
+
+RESULTADO: OK: sin configuración de la práctica

@@ -5,8 +5,23 @@ set -Eeuo pipefail
 raiz_pc2="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 cd "$raiz_pc2"
 
+# La consola muestra el resultado final; el detalle completo queda en un registro.
+mkdir -p pc02/logs/etapas
+registro_pc2="$(mktemp "$raiz_pc2/pc02/logs/etapas/despliegue-XXXXXXXX.log")"
+exec 3>&1 4>&2
+informar_salida_pc2() {
+    estado_pc2=$?
+    trap - EXIT
+    if (( estado_pc2 != 0 )); then
+        printf 'FALLA: despliegue. Registro: %s\n' "$registro_pc2" >&4
+        tail -n 35 "$registro_pc2" >&4
+    fi
+    exit "$estado_pc2"
+}
+trap informar_salida_pc2 EXIT
+exec >"$registro_pc2" 2>&1
+
 fallar_pc2() { printf 'FALLA: %s\n' "$*" >&2; exit 1; }
-trap 'printf "FALLA: despliegue detenido en la línea %s.\n" "$LINENO" >&2' ERR
 
 for programa_pc2 in python3 docker containerlab sudo; do
     command -v "$programa_pc2" >/dev/null ||
@@ -116,4 +131,5 @@ sudo containerlab deploy \
   -t pc02/escenario02.runtime.yml --max-workers 4
 
 "$python_pc2" pc02/check_empty.py
-echo 'OK: 30 routers sin configuración de la práctica. Ejecute bash pc02/configurar.sh'
+exec 1>&3 2>&4
+echo 'RED DESPLEGADA SIN CONFIGURACION'

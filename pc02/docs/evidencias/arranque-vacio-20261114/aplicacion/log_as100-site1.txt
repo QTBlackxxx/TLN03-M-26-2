@@ -1,0 +1,79 @@
+=== APLICACIÓN ===
+
+[150|mgmtd] sending configuration
+[151|zebra] sending configuration
+[151|zebra] done
+[154|ospfd] sending configuration
+[155|ospf6d] sending configuration
+[156|ldpd] sending configuration
+[157|bgpd] sending configuration
+[158|isisd] sending configuration
+[156|ldpd] done
+[155|ospf6d] done
+[150|mgmtd] done
+[166|staticd] sending configuration
+[154|ospfd] done
+[158|isisd] done
+[157|bgpd] done
+[166|staticd] done
+Waiting for children to finish applying config...
+[171|watchfrr] sending configuration
+[171|watchfrr] done
+
+=== WRITE MEMORY ===
+
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+
+=== show running-config ===
+
+Building configuration...
+
+Current configuration:
+!
+frr version 10.7.1
+frr defaults traditional
+hostname as100-site1
+service integrated-vtysh-config
+!
+interface eth1
+ ip address 10.0.1.2/30
+ ip ospf area 0
+ ip ospf network point-to-point
+exit
+!
+interface lo
+ ip address 192.168.1.1/24
+ ip ospf area 0
+ ip ospf passive
+exit
+!
+router ospf
+ ospf router-id 192.168.1.1
+exit
+!
+end
+
+=== show ip route ===
+
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, weight 1, 00:02:00
+C>* 10.0.1.0/30 is directly connected, eth1, weight 1, 00:00:00
+L>* 10.0.1.2/32 is directly connected, eth1, weight 1, 00:00:00
+C>* 172.20.20.0/24 is directly connected, eth0, weight 1, 00:02:00
+L>* 172.20.20.30/32 is directly connected, eth0, weight 1, 00:02:00
+C>* 192.168.1.0/24 is directly connected, lo, weight 1, 00:00:00
+L>* 192.168.1.1/32 is directly connected, lo, weight 1, 00:00:00
+
+=== show ip ospf neighbor ===
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL

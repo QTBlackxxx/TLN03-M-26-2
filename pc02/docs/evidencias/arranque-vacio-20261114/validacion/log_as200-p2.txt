@@ -1,0 +1,86 @@
+=== show version ===
+
+FRRouting 10.7.1 (as200-p2) on Linux(7.0.0-43-generic).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+configured with:
+    '--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-option-checking' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--sbindir=/usr/lib/frr' '--with-vtysh-pager=/usr/bin/pager' '--libdir=/usr/lib/x86_64-linux-gnu/frr' '--with-moduledir=/usr/lib/x86_64-linux-gnu/frr/modules' '--disable-dependency-tracking' '--enable-rpki' '--disable-scripting' '--enable-pim6d' '--disable-grpc' '--disable-address-sanitizer' '--disable-gperf-tcmalloc' '--with-libpam' '--enable-doc' '--enable-doc-html' '--enable-snmp' '--enable-fpm' '--disable-protobuf' '--disable-zeromq' '--enable-ospfapi' '--enable-bgp-vnc' '--enable-multipath=256' '--enable-pcre2posix' '--enable-user=frr' '--enable-group=frr' '--enable-vty-group=frrvty' '--enable-configfile-mask=0640' '--enable-logfile-mask=0640' 'build_alias=x86_64-linux-gnu' 'PYTHON=python3'
+
+=== show ip route ===
+
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, weight 1, 00:05:51
+C>* 10.0.0.16/30 is directly connected, eth4, weight 1, 00:04:31
+L>* 10.0.0.18/32 is directly connected, eth4, weight 1, 00:04:31
+C>* 10.0.0.20/30 is directly connected, eth1, weight 1, 00:04:31
+L>* 10.0.0.21/32 is directly connected, eth1, weight 1, 00:04:31
+C>* 10.0.0.24/30 is directly connected, eth3, weight 1, 00:04:31
+L>* 10.0.0.25/32 is directly connected, eth3, weight 1, 00:04:31
+C>* 10.0.0.28/30 is directly connected, eth2, weight 1, 00:04:31
+L>* 10.0.0.29/32 is directly connected, eth2, weight 1, 00:04:31
+C>* 10.0.0.32/30 is directly connected, eth5, weight 1, 00:04:31
+L>* 10.0.0.33/32 is directly connected, eth5, weight 1, 00:04:31
+B>  45.10.0.0/29 [200/0] via 190.1.1.1 (recursive), weight 1, 00:03:28
+  *                        via 10.0.0.30, eth2, label 21, weight 1, 00:03:28
+                         via 190.1.1.1 (recursive) (dup), weight 1, 00:03:28
+                           via 10.0.0.30, eth2 (dup), label 21, weight 1, 00:03:28
+B>  50.20.0.0/29 [200/0] via 172.16.1.2 (recursive), weight 1, 00:03:16
+  *                        via 10.0.0.22, eth1, label 35, weight 1, 00:03:16
+                         via 172.16.1.2 (recursive) (dup), weight 1, 00:03:16
+                           via 10.0.0.22, eth1 (dup), label 35, weight 1, 00:03:16
+I>* 50.20.0.1/32 [115/30] via 10.0.0.22, eth1, label 34, weight 1, 00:03:32
+I>* 172.16.1.1/32 [115/30] via 10.0.0.26, eth3, label 30, weight 1, 00:03:27
+I>* 172.16.1.2/32 [115/30] via 10.0.0.22, eth1, label 35, weight 1, 00:03:32
+I>* 172.16.3.1/32 [115/20] via 10.0.0.17, eth4, label implicit-null, weight 1, 00:04:01
+I>* 172.16.3.2/32 [115/20] via 10.0.0.34, eth5, label implicit-null, weight 1, 00:04:01
+I>* 172.16.4.1/32 [115/20] via 10.0.0.22, eth1, label implicit-null, weight 1, 00:04:01
+L * 172.16.4.2/32 is directly connected, lo, weight 1, 00:04:31
+C>* 172.16.4.2/32 is directly connected, lo, weight 1, 00:04:31
+I>* 172.16.4.3/32 [115/20] via 10.0.0.30, eth2, label implicit-null, weight 1, 00:04:01
+I>* 172.16.4.4/32 [115/20] via 10.0.0.26, eth3, label implicit-null, weight 1, 00:04:01
+I>* 172.16.4.5/32 [115/30] via 10.0.0.22, eth1, label 31, weight 1, 00:03:54
+  *                        via 10.0.0.26, eth3, label 31, weight 1, 00:03:54
+C>* 172.20.20.0/24 is directly connected, eth0, weight 1, 00:05:51
+L>* 172.20.20.28/32 is directly connected, eth0, weight 1, 00:05:51
+I>* 190.1.1.1/32 [115/30] via 10.0.0.30, eth2, label 21, weight 1, 00:03:59
+I>* 190.1.1.2/32 [115/30] via 10.0.0.26, eth3, label 22, weight 1, 00:03:57
+
+=== show isis neighbor ===
+
+Area TLN03:
+ System Id           Interface   L  State         Holdtime SNPA
+ as200-p1            eth1        2  Up            30       2020.2020.2020
+ as200-p3            eth2        2  Up            29       2020.2020.2020
+ as200-p4            eth3        2  Up            28       2020.2020.2020
+ as200-rr1           eth4        2  Up            27       2020.2020.2020
+ as200-rr2           eth5        2  Up            28       2020.2020.2020
+
+=== show mpls ldp neighbor ===
+
+AF   ID              State       Remote Address  Uptime
+ipv4 172.16.3.1      OPERATIONAL 172.16.3.1      00:03:43
+ipv4 172.16.3.2      OPERATIONAL 172.16.3.2      00:03:40
+ipv4 172.16.4.1      OPERATIONAL 172.16.4.1      00:03:53
+ipv4 172.16.4.3      OPERATIONAL 172.16.4.3      00:03:51
+ipv4 172.16.4.4      OPERATIONAL 172.16.4.4      00:03:51
+
+=== show bgp ipv4 unicast summary ===
+
+BGP router identifier 172.16.4.2, local AS number 200 VRF default vrf-id 0
+BGP table version 2
+RIB entries 2, using 320 bytes of memory
+Peers 2, using 60 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+172.16.3.1      4        200         8         6        2    0    0 00:03:46            2        0 N/A
+172.16.3.2      4        200         8         6        2    0    0 00:03:43            2        0 N/A
+
+Total number of neighbors 2
+
+RESULTADO: OK

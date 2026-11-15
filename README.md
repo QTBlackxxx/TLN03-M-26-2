@@ -45,18 +45,35 @@ No precarga IGP, BGP, LDP, direcciones de datos ni VRF. Si existe un laboratorio
 de esa carpeta, lo retira y respalda runtime antes de crear uno nuevo vacío.
 Interrumpe el tráfico. Si pertenece a otra copia, se detiene antes de retirarlo.
 
-Antes de configurar, exige `Routers vacíos comprobados: 30/30` y guarda
+Antes de configurar, comprueba los 30 routers vacíos y guarda
 la evidencia en `pc02/logs/antes-python/`. Después, configurar.sh ejecuta Python,
 prepara las VRF Linux de los PE mediante Docker y aplica FRR por SSH/Netmiko.
 Los archivos del profesor se utilizan como plantillas al configurar,
 no como configuración inicial de los contenedores.
 
+
+### Mensajes finales
+
+| Comando | Resultado si termina correctamente |
+|---|---|
+| bash pc02/desplegar.sh | RED DESPLEGADA SIN CONFIGURACION |
+| bash pc02/configurar.sh | Routers configurados: 30/30 y TODOS LOS DISPOSITIVOS CONFIGURADOS |
+| bash pc02/validar.sh | RED CONFIGURADA FUNCIONAL |
+
+Los tres Bash conservan el detalle completo en pc02/logs/etapas/.
+Las solicitudes de contraseña permanecen interactivas. Si una etapa falla,
+muestra el error y la ubicación del registro, devuelve un código distinto
+de cero y no imprime el mensaje de éxito.
+
 ### Verificación del nuevo arranque vacío
 
-Esta corrección requiere repetir en la VM el ciclo: 30/30 vacíos antes de
-Python, 30/30 aplicaciones y 30/30 validaciones después. Las pruebas históricas
-siguientes corresponden al despliegue anterior desde las bases del profesor;
-no prueban por sí solas este nuevo arranque vacío.
+Se superó la prueba desde un clon nuevo de GitHub, con un entorno Python
+nuevo y un runtime nuevo en la VM Ubuntu de pruebas: 30 routers vacíos antes
+de configurar, aplicación y guardado por Netmiko 30/30, validación 30/30 y
+bases originales intactas.
+
+[Evidencia del ciclo desde routers vacíos](pc02/docs/evidencias/arranque-vacio-20261114/README.md).
+Las pruebas históricas de fallas siguientes corresponden al despliegue anterior.
 
 ### Resultados históricos comprobados
 

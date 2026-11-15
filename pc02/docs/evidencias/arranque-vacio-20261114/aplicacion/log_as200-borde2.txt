@@ -1,0 +1,136 @@
+=== APLICACIÓN ===
+
+[157|mgmtd] sending configuration
+[158|zebra] sending configuration
+[161|ospfd] sending configuration
+[162|ospf6d] sending configuration
+[163|ldpd] sending configuration
+[164|bgpd] sending configuration
+[165|isisd] sending configuration
+[158|zebra] done
+[162|ospf6d] done
+[161|ospfd] done
+[173|staticd] sending configuration
+[178|watchfrr] sending configuration
+[163|ldpd] done
+Waiting for children to finish applying config...
+[157|mgmtd] done
+[164|bgpd] done
+[178|watchfrr] done
+[173|staticd] done
+[165|isisd] done
+
+=== WRITE MEMORY ===
+
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+
+=== show running-config ===
+
+Building configuration...
+
+Current configuration:
+!
+frr version 10.7.1
+frr defaults traditional
+hostname as200-borde2
+log syslog informational
+service integrated-vtysh-config
+!
+interface eth1
+ ip address 161.0.1.2/30
+exit
+!
+interface eth2
+ ip address 181.0.0.2/30
+exit
+!
+interface eth3
+ ip address 10.0.0.58/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface lo
+ ip address 190.1.1.2/32
+ ip router isis TLN03
+ ipv6 address 2006:1:1::2/128
+ ipv6 router isis TLN03
+ isis passive
+exit
+!
+router bgp 200
+ bgp router-id 190.1.1.2
+ no bgp default ipv4-unicast
+ neighbor 172.16.3.1 remote-as 200
+ neighbor 172.16.3.1 update-source lo
+ neighbor 172.16.3.2 remote-as 200
+ neighbor 172.16.3.2 update-source lo
+ neighbor fc10:16:3::1 remote-as 200
+ neighbor fc10:16:3::1 update-source lo
+ neighbor fc10:16:3::2 remote-as 200
+ neighbor fc10:16:3::2 update-source lo
+ !
+ address-family ipv4 unicast
+  neighbor 172.16.3.1 activate
+  neighbor 172.16.3.1 next-hop-self
+  neighbor 172.16.3.2 activate
+  neighbor 172.16.3.2 next-hop-self
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor fc10:16:3::1 activate
+  neighbor fc10:16:3::2 activate
+ exit-address-family
+exit
+!
+mpls ldp
+ router-id 190.1.1.2
+ !
+ address-family ipv4
+  discovery transport-address 190.1.1.2
+  !
+  interface eth3
+  exit
+  !
+ exit-address-family
+ !
+exit
+!
+router isis TLN03
+ is-type level-2-only
+ net 49.0001.0000.0000.0112.00
+ advertise-passive-only
+ topology ipv6-unicast
+exit
+!
+end
+
+=== show ip route ===
+
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, weight 1, 00:02:37
+C>* 10.0.0.56/30 is directly connected, eth3, weight 1, 00:00:01
+L>* 10.0.0.58/32 is directly connected, eth3, weight 1, 00:00:01
+C>* 161.0.1.0/30 is directly connected, eth1, weight 1, 00:00:01
+L>* 161.0.1.2/32 is directly connected, eth1, weight 1, 00:00:01
+C>* 172.20.20.0/24 is directly connected, eth0, weight 1, 00:02:37
+L>* 172.20.20.10/32 is directly connected, eth0, weight 1, 00:02:37
+C>* 181.0.0.0/30 is directly connected, eth2, weight 1, 00:00:01
+L>* 181.0.0.2/32 is directly connected, eth2, weight 1, 00:00:01
+L * 190.1.1.2/32 is directly connected, lo, weight 1, 00:00:01
+C>* 190.1.1.2/32 is directly connected, lo, weight 1, 00:00:01
+
+=== show ip ospf neighbor ===
+
+% OSPF is not enabled in vrf default
