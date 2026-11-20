@@ -1,5 +1,6 @@
-"""Prepara copias de ejecución sin modificar las configuraciones base."""
+"""Prepara FRR sin configuración de la práctica; conserva las bases originales."""
 
+import re
 import shutil
 from pathlib import Path
 
@@ -8,7 +9,7 @@ from startup_support import prepare_startup
 
 
 def prepare():
-    """Copia las bases y genera la topología con montajes de ejecución."""
+    """Crea configuración mínima y traslada las VRF Linux a la fase de aplicación."""
     base = Path(__file__).resolve().parent
     runtime = base / "runtime"
     source = base / "escenario02.yml"
@@ -33,15 +34,20 @@ def prepare():
         folder = (base / original).resolve()
         if not folder.is_dir():
             raise ValueError(f"{name}: falta {folder}")
+        if not (folder / "daemons").is_file():
+            raise ValueError(f"{name}: falta el archivo daemons")
         mappings.append((name, node, matches[0], original, folder))
 
     runtime.mkdir()
     for name, node, old_bind, original, folder in mappings:
         destination = runtime / "configs" / folder.name
-        shutil.copytree(
-            folder,
-            destination,
-            ignore=shutil.ignore_patterns("*.sav"),
+        # Solo habilitamos los procesos. Ningún .conf de las bases se monta.
+        destination.mkdir(parents=True)
+        shutil.copy2(folder / "daemons", destination / "daemons")
+        (destination / "frr.conf").write_text(
+            f"frr defaults traditional\nhostname {name}\n"
+            "service integrated-vtysh-config\n!\nend\n",
+            encoding="utf-8",
         )
         (destination / "vtysh.conf").write_text(
             "service integrated-vtysh-config\n", encoding="utf-8"
@@ -59,8 +65,16 @@ def prepare():
             'bash -c "chown -R frr:frr /etc/frr '
             '&& chmod -R u+rwX,go+rX /etc/frr"'
         )
-        node["exec"] = [permissions] + node.get("exec", [])
-        print(f"PREPARADO: {name}")
+        # Las VRF y asociaciones de puertos las crea run.py al configurar.
+        vrf_command = re.compile(
+            r'^bash -c "ip link (?:add [AB] type vrf table (?:10|20)'
+            r'|set [AB] up|set eth[34] master [AB])"$'
+        )
+        node["exec"] = [permissions] + [
+            cmd for cmd in node.get("exec", [])
+            if not vrf_command.fullmatch(cmd)
+        ]
+        print(f"PREPARADO SIN CONFIGURACIÓN DE RED: {name}")
 
     prepare_startup(base, topology)
 

@@ -1,0 +1,158 @@
+=== APLICACIÓN ===
+
+[244|mgmtd] sending configuration
+[245|zebra] sending configuration
+[249|ospf6d] sending configuration
+[248|ospfd] sending configuration
+[250|ldpd] sending configuration
+[251|bgpd] sending configuration
+[252|isisd] sending configuration
+[245|zebra] done
+[260|staticd] sending configuration
+[260|staticd] done
+[249|ospf6d] done
+Waiting for children to finish applying config...
+[265|watchfrr] sending configuration
+[250|ldpd] done
+[248|ospfd] done
+[265|watchfrr] done
+[244|mgmtd] done
+[252|isisd] done
+[251|bgpd] done
+
+=== WRITE MEMORY ===
+
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+
+=== show running-config ===
+
+Building configuration...
+
+Current configuration:
+!
+frr version 10.7.1
+frr defaults traditional
+hostname as200-p5
+log syslog informational
+service integrated-vtysh-config
+!
+interface eth1
+ ip address 10.0.0.45/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth2
+ ip address 10.0.0.10/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth3
+ ip address 10.0.0.49/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface eth4
+ ip address 10.0.0.2/30
+ ip router isis TLN03
+ ipv6 router isis TLN03
+ isis network point-to-point
+exit
+!
+interface lo
+ ip address 172.16.4.5/32
+ ip router isis TLN03
+ ipv6 address fc10:16:4::5/128
+ ipv6 router isis TLN03
+ isis passive
+exit
+!
+router bgp 200
+ bgp router-id 172.16.4.5
+ no bgp default ipv4-unicast
+ neighbor 172.16.3.1 remote-as 200
+ neighbor 172.16.3.1 update-source lo
+ neighbor 172.16.3.2 remote-as 200
+ neighbor 172.16.3.2 update-source lo
+ neighbor fc10:16:3::1 remote-as 200
+ neighbor fc10:16:3::1 update-source lo
+ neighbor fc10:16:3::2 remote-as 200
+ neighbor fc10:16:3::2 update-source lo
+ !
+ address-family ipv4 unicast
+  neighbor 172.16.3.1 activate
+  neighbor 172.16.3.2 activate
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor fc10:16:3::1 activate
+  neighbor fc10:16:3::2 activate
+ exit-address-family
+exit
+!
+mpls ldp
+ router-id 172.16.4.5
+ !
+ address-family ipv4
+  discovery transport-address 172.16.4.5
+  !
+  interface eth1
+  exit
+  !
+  interface eth2
+  exit
+  !
+  interface eth3
+  exit
+  !
+  interface eth4
+  exit
+  !
+ exit-address-family
+ !
+exit
+!
+router isis TLN03
+ is-type level-2-only
+ net 49.0001.0000.0000.0045.00
+ advertise-passive-only
+ topology ipv6-unicast
+exit
+!
+end
+
+=== show ip route ===
+
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv4 unicast VRF default:
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, weight 1, 00:01:31
+C>* 10.0.0.0/30 is directly connected, eth4, weight 1, 00:00:01
+L>* 10.0.0.2/32 is directly connected, eth4, weight 1, 00:00:01
+C>* 10.0.0.8/30 is directly connected, eth2, weight 1, 00:00:01
+L>* 10.0.0.10/32 is directly connected, eth2, weight 1, 00:00:01
+C>* 10.0.0.44/30 is directly connected, eth1, weight 1, 00:00:01
+L>* 10.0.0.45/32 is directly connected, eth1, weight 1, 00:00:01
+C>* 10.0.0.48/30 is directly connected, eth3, weight 1, 00:00:01
+L>* 10.0.0.49/32 is directly connected, eth3, weight 1, 00:00:01
+L * 172.16.4.5/32 is directly connected, lo, weight 1, 00:00:01
+C>* 172.16.4.5/32 is directly connected, lo, weight 1, 00:00:01
+C>* 172.20.20.0/24 is directly connected, eth0, weight 1, 00:01:31
+L>* 172.20.20.27/32 is directly connected, eth0, weight 1, 00:01:31
+
+=== show ip ospf neighbor ===
+
+% OSPF is not enabled in vrf default

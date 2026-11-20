@@ -39,12 +39,43 @@ bash pc02/validar.sh
 SSH de la imagen del laboratorio: usuario **admin**, contraseña **admin**.
 sudo utiliza la contraseña del usuario del anfitrión Linux.
 
-El despliegue prepara las dependencias y la topología runtime con la
-corrección de arranque. Si el laboratorio ya pertenece a esa carpeta,
-lo recrea conservando runtime y registros; el tráfico se interrumpe durante
-el proceso. Si pertenece a otra copia, se detiene antes de retirarlo.
+El despliegue prepara las dependencias y crea los 30 FRR sin configuración
+de enrutamiento de la práctica. Conserva SSH, los procesos FRR y la gestión.
+No precarga IGP, BGP, LDP, direcciones de datos ni VRF. Si existe un laboratorio
+de esa carpeta, lo retira y respalda runtime antes de crear uno nuevo vacío.
+Interrumpe el tráfico. Si pertenece a otra copia, se detiene antes de retirarlo.
 
-### Resultados comprobados
+Antes de configurar, comprueba los 30 routers vacíos y guarda
+la evidencia en `pc02/logs/antes-python/`. Después, configurar.sh ejecuta Python,
+prepara las VRF Linux de los PE mediante Docker y aplica FRR por SSH/Netmiko.
+Los archivos del profesor se utilizan como plantillas al configurar,
+no como configuración inicial de los contenedores.
+
+
+### Mensajes finales
+
+| Comando | Resultado si termina correctamente |
+|---|---|
+| bash pc02/desplegar.sh | RED DESPLEGADA SIN CONFIGURACION |
+| bash pc02/configurar.sh | Routers configurados: 30/30 y TODOS LOS DISPOSITIVOS CONFIGURADOS |
+| bash pc02/validar.sh | RED CONFIGURADA FUNCIONAL |
+
+Los tres Bash conservan el detalle completo en pc02/logs/etapas/.
+Las solicitudes de contraseña permanecen interactivas. Si una etapa falla,
+muestra el error y la ubicación del registro, devuelve un código distinto
+de cero y no imprime el mensaje de éxito.
+
+### Verificación del nuevo arranque vacío
+
+Se superó la prueba desde un clon nuevo de GitHub, con un entorno Python
+nuevo y un runtime nuevo en la VM Ubuntu de pruebas: 30 routers vacíos antes
+de configurar, aplicación y guardado por Netmiko 30/30, validación 30/30 y
+bases originales intactas.
+
+[Evidencia del ciclo desde routers vacíos](pc02/docs/evidencias/arranque-vacio-20261114/README.md).
+Las pruebas históricas de fallas siguientes corresponden al despliegue anterior.
+
+### Resultados históricos comprobados
 
 | Ensayo | Resultado |
 |---|---|

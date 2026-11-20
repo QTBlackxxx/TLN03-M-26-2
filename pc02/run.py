@@ -11,6 +11,7 @@ from pathlib import Path
 import yaml
 from netmiko import ConnectHandler
 from build_configs import generate
+from linux_vrf import prepare_linux_vrfs
 
 
 def execute(connection, command):
@@ -27,7 +28,7 @@ def execute(connection, command):
     return result
 
 
-def apply_node(name, node, defaults, password, base, log_dir):
+def apply_node(name, node, defaults, password, base, log_dir, customers):
     """Transfiere, aplica, guarda y consulta la configuración de un nodo."""
     sections = []
     remote_path = f"/tmp/pc2-{uuid.uuid4().hex}.conf"
@@ -45,6 +46,9 @@ def apply_node(name, node, defaults, password, base, log_dir):
             auth_timeout=15,
             banner_timeout=20,
         ) as connection:
+            if node["role"] == "pe":
+                prepared = prepare_linux_vrfs(node, customers)
+                sections.append(f"=== VRF LINUX EN FASE DE CONFIGURACIÓN ===\n{prepared}\n")
             # SFTP utiliza la misma sesión SSH autenticada de Netmiko.
             with connection.remote_conn_pre.open_sftp() as sftp:
                 with sftp.file(remote_path, "w") as remote_file:
@@ -160,7 +164,7 @@ def main():
     results = [
         apply_node(
             name, inventory["nodes"][name], defaults,
-            password, base, log_dir,
+            password, base, log_dir, inventory["customers"],
         )
         for name in args.nodes
     ]
